@@ -1,0 +1,104 @@
+/* line 9, ../sass/main.scss */
+.flex-center-center {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center;
+  height: 50%;
+}
+
+/* line 14, ../sass/main.scss */
+.cir-wrapper {
+  width: 900px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center;
+}
+/* line 20, ../sass/main.scss */
+.cir-wrapper .cir {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  position: relative;
+}
+/* line 24, ../sass/main.scss */
+.cir-wrapper .cir.fe h4::before {
+  font-family: FontAwesome;
+  content: "\f07e";
+  position: absolute;
+  top: 60px;
+  left: -40px;
+  color: white;
+  font-size: 76px;
+}
+/* line 33, ../sass/main.scss */
+.cir-wrapper .cir.fe h4::after {
+  font-family: FontAwesome;
+  content: "\f07e";
+  position: absolute;
+  top: 60px;
+  left: 260px;
+  color: white;
+  font-size: 76px;
+}
+/* line 44, ../sass/main.scss */
+.cir-wrapper h4 {
+  font-size: 32px;
+  font-weight: bold;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 1px black;
+  background-color: white;
+  color: #95dc84;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}

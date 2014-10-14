@@ -1,0 +1,462 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gruntjs介绍</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" media="all" href="/css/nodeppt.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="/css/phone.css">
+</head>
+<body>
+
+<slides id="container" class="layout-widescreen">
+    <slide class="slide title-slide segue nobackground">
+    <hgroup class="auto-fadein">
+      <h1 data-config-title>Gruntjs工具介绍</h1>
+      <h2 data-config-subtitle></h2>
+      <p data-config-presenter>移动搜索：王永清</p>
+    </hgroup>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>目录</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Grunt简介</li>
+        <li>Grunt安装</li>
+        <li>使用Grunt建一个简单的项目</li>
+        <li>常见插件</li>
+      </ul>
+    </article>
+  </slide>
+  <slide class="slide">
+    <article class="flexbox vcenter">
+      <img src="http://gruntjs.com/img/grunt-logo.png" class="r">
+    </article>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>Grunt简介</h2>
+      <h3>前端项目构建工具，基于node的命令行工具</h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>合并js文件</li>
+        <li>压缩js/css/html/图片文件</li>
+        <li>语法检测</li>
+        <li>单元测试</li>
+        <li>watch功能</li>
+      </ul>
+    </article>
+  </slide>
+  <slide class="slide">
+    <article class="flexbox vcenter">
+      <h2>Grunt安装</h2>
+    </article>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>安装grunt-cli </h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h4>
+      <pre class="prettyprint">npm install -g grunt-cli      </pre></h4>
+    </article>
+ 
+  </slide>
+      <slide class="slide">
+        <hgroup>
+            <h2>安装grunt任务插件</h2>
+        </hgroup>
+        <article class="flexbox vcenter">        
+        <h4>
+     <pre class="prettyprint">
+npm install grunt-plugin-name --save-dev      
+</pre></h4>
+        </article>
+    </slide>
+    <slide class="slide">
+    <article class="flexbox vcenter">
+      <h2>使用Grunt建一个简单的项目</h2>
+    </article>
+  </slide>
+  <slide class="slide">
+    <article class="flexbox vcenter">
+        <h2>每个grunt项目包括两个必要文件</h2>
+            <h3>package.json</h3>
+            <h3>Gruntfile.js</h3>
+    </article>
+  </slide>
+  
+  <slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+{
+    "name": "my-project-name",
+    "version": "0.1.0",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.1.1",
+        "grunt-contrib-nodeunit": "~0.1.2"
+    }
+}
+</pre>
+    </article>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article>
+      <ul>
+          <li>你可能用到的变量和说明，例如：version、name</li>
+          <li>依赖的模块</li>
+      </ul>
+    </article>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+{
+    "name": "jquery",
+    "title": "jQuery",
+    "description": "JavaScript library for DOM operations",
+    "version": "2.0.0-pre",
+    "homepage": "http://jquery.com",
+    "author": {
+        "name": "jQuery Foundation and other contributors",
+        "url": "https://github.com/jquery/jquery/blob/master/AUTHORS.txt"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "0.3.0",
+        "grunt-contrib-uglify": "0.1.2"
+    }
+}
+</pre>
+    </article>
+  </slide>
+<slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+{
+    "name": "my-project-name",
+    "version": "0.1.0",
+    "devDependencies": {
+    }
+}
+</pre>
+    </article>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <pre class="prettyprint" data-lang="shell">
+npm install grunt
+</pre>
+    </article>
+  </slide>
+  <slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+{
+    "name": "my-project-name",
+    "version": "0.1.0",
+    "devDependencies": {
+        <b>"grunt": "~0.4.1"</b>
+    }
+}
+</pre>
+    </article>
+  </slide>
+    <slide class="slide">
+    <hgroup>
+      <h2>package.json</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+{
+    "name": "my-project-name",
+    "version": "0.1.0",
+    "devDependencies": {
+        <b>"grunt": "~0.4.1",
+        "grunt-contrib-jshint": "0.3.0",
+        "grunt-contrib-uglify": "0.1.2"</b>
+    }
+}
+</pre>
+      <pre class="prettyprint" data-lang="shell">
+npm install
+</pre>
+    </article>
+  </slide>
+
+  <slide class="slide">
+    <hgroup>
+      <h2>node module写法的任务管理文件</h2>
+    </hgroup>
+    <article>
+            <pre class="prettyprint" data-lang="javascript">
+module.exports = function(grunt) {
+    grunt.initConfig({
+    <b>
+    uglify: {      
+      build: {
+        src: 'src/myfile.js',
+        dest: 'build/myfile.min.js'
+      }
+    }
+    });
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.registerTask('default', ['uglify']);</b>
+};
+</pre>
+    </article>
+  </slide>
+<slide class="slide">
+    <hgroup>
+      <h2>添加jshint语法检测</h2>
+    </hgroup>
+    <article>
+            <pre class="prettyprint" data-lang="javascript">
+module.exports = function(grunt) {
+    grunt.initConfig({
+    <b>
+    jshint: {
+        all: ['src/*.js','src/**/*.js']
+    },</b>
+    uglify: {
+        build: {
+            src: 'src/myfile.js',
+            dest: 'build/myfile.min.js'
+        }
+    }
+    });
+    <b>grunt.loadNpmTasks('grunt-contrib-jshint');</b>
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.registerTask('default', [<b>'jshint'</b>,'uglify']);
+};
+</pre>
+    </article>
+  </slide>
+<slide class="slide">
+    <hgroup>
+      <h2>使用package.json的数据</h2>
+    </hgroup>
+    <article>
+            <pre class="prettyprint" data-lang="javascript">
+module.exports = function(grunt) {
+    grunt.initConfig({
+    <b>pkg: grunt.file.readJSON('package.json'),</b>
+    uglify: {
+        <b>options: {
+            banner: '/*! &lt;%= pkg.name %> '+
+                    '&lt;<%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        },</b>
+        build: {
+            src: 'src/<b>&lt;%= pkg.name %></b>.js',
+            dest: 'build/<b>&lt;%= pkg.name %>.&lt;%= pkg.version %></b>.min.js'
+        }
+    }
+    });
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.registerTask('default', ['uglify']);
+};
+</pre>
+    </article>
+  </slide>
+<slide class="slide">
+        <hgroup>
+            <h2>合并压缩css文件</h2>
+            <h3>grunt-contrib-cssmin</h3>
+        </hgroup>
+        <article>
+     <pre class="prettyprint" data-lang="javascript">
+cssmin: {
+    compress: {
+        options: {
+            banner: '<%= banner %>'
+        },
+        files: {
+            'project.min.css': ['1.css', '2.css', '...']
+        }
+    }
+}
+grunt.loadNpmTasks('grunt-contrib-cssmin');
+grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
+</pre>
+        </article>
+    </slide>
+    <slide class="slide">
+        <hgroup>
+            <h2>合并js文件</h2>
+            <h3>grunt-contrib-concat</h3>
+        </hgroup>
+        <article>
+     <pre class="prettyprint" data-lang="javascript">
+concat: {
+    options: {
+        separator: ';'
+    },
+    dist: {
+        src: ['src/intro.js', 'src/project.js', 'src/outro.js'],
+        dest: 'dist/built.js'
+    }
+}
+grunt.loadNpmTasks('grunt-contrib-concat');
+grunt.registerTask('default', ['concat']);
+</pre>
+        </article>
+    </slide>
+       <slide class="slide">
+        <hgroup>
+            <h2>图片压缩优化</h2>
+            <h3>grunt-contrib-imagemin</h3>
+        </hgroup>
+        <article>
+     <pre class="prettyprint" data-lang="javascript">
+imagemin: {
+    dist: {
+        options: {
+            optimizationLevel: 3
+        },
+        src: ['src/img/*', 'src/img/**/*'],
+        dest: 'src/imgmin/'
+    }
+}
+grunt.loadNpmTasks('grunt-contrib-imagemin');
+grunt.registerTask('default', ['imagemin']);
+</pre>
+        </article>
+    </slide>
+           <slide class="slide">
+        <hgroup>
+            <h2>图片压缩优化</h2>
+            <h3>grunt-contrib-imagemin</h3>
+        </hgroup>
+        <article>
+     <pre class="prettyprint" data-lang="javascript">
+imagemin: {
+    dist: {
+        options: {
+            optimizationLevel: 3
+        },
+        src: ['src/img/*', 'src/img/**/*'],
+        dest: 'src/imgmin/'
+    }
+}
+grunt.loadNpmTasks('grunt-contrib-imagemin');
+grunt.registerTask('default', ['imagemin']);
+</pre>
+        </article>
+    </slide>
+           <slide class="slide">
+        <hgroup>
+            <h2>Compass Sass</h2>
+            <h3>grunt-contrib-compass</h3>
+        </hgroup>
+        <article>
+     <pre class="prettyprint" data-lang="javascript">
+compass: {
+    dev: {
+        options: {
+            config: 'config.rb'
+        }
+    },
+    build: {
+        options: {
+            config: 'config.rb',
+            outputStyle: 'compressed',
+            cssDir: 'src/css/'
+        }
+    }
+}
+
+grunt.loadNpmTasks('grunt-contrib-compass');
+</pre>
+        </article>
+    </slide>
+    <slide class="slide">
+        <hgroup>
+            <h2>watch</h2>
+            <h3>grunt-contrib-compass</h3>
+        </hgroup>
+        <article>
+     <pre class="prettyprint" data-lang="javascript">
+watch: {
+    js:{
+        files: ['src/js/touch.js'],
+        tasks: ['jshint'],
+    },
+    css:{
+        files: ['src/sass/*.scss'],
+        tasks: ['compass:dev'],
+    }
+}
+
+grunt.loadNpmTasks('grunt-contrib-watch');
+</pre>
+        </article>
+    </slide>
+
+<slide class="slide thank-you-slide segue nobackground">
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+    </article>
+  </slide>
+    <div class="slideTip" id="tip"></div>
+    <canvas id="drawBoard" class="draw-board" width="900" height="700"></canvas>
+</slides>
+<div class="progress"><span id="progress"></span></div>
+<script type='text/javascript' src="http://rawgithub.com/ksky521/MixJS/master/lib/mix.0.3.0.min.js"></script>
+<script>
+MixJS.use('event/broadcast',function($){
+    $.loadJS('/js/nodeppt.js',function(){
+        Slide.init({
+            containerID: 'container',
+            drawBoardID: 'drawBoard',
+            slideClass: '.slide',
+            buildClass: '.build',
+            progressID: 'progress',
+            transition: 'zoomin',
+            tipID: 'tip',
+            width: 1100,
+            dir: '/js/',
+            // control:{
+            //     type:'socket',
+            //     args:{
+            //         isControl:location.hash==='#control',
+            //         host:'http://'+location.host+':8200',
+            //         shake:true
+            //     }
+            // }
+            //控制相关#client
+            control:{
+             type:'postMessage',
+             args:{isControl:location.hash==='#control',host:'http://127.0.0.1:8000'}
+            }
+
+        });
+
+    }).loadJS('/js/prettify.js',function(){
+        prettyPrint();
+    });
+});
+</script>   
+</body>
+</html>

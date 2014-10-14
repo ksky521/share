@@ -1,0 +1,58 @@
+@import "compass/css3";
+@mixin flex-center-center {
+    @include display-box();
+    @include box-orient(vertical);
+    @include box-align(center);
+    @include box-pack(center);
+}
+
+.flex-center-center{
+    @include flex-center-center;
+    height: 50%;
+}
+
+.cir-wrapper{
+    width: 900px;
+    @include display-box();
+    @include box-align(center);
+    @include box-orient(horizontal);
+    @include box-pack(center);
+    .cir{
+        @include box-flex(1);
+        position: relative;
+        &.fe h4{
+            &::before{
+                font-family: FontAwesome;
+                content:"\f07e";
+                position: absolute;
+                top: 60px;
+                left: -40px;
+                color: white;
+                font-size: 76px;
+            }
+            &::after{
+                font-family: FontAwesome;
+                content:"\f07e";
+                position: absolute;
+                top: 60px;
+                left: 260px;
+                color: white;
+                font-size: 76px;
+            }
+        }
+    }
+    h4{
+        font-size: 32px;
+        font-weight: bold;
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+        @include text-shadow(1px 1px 1px #000);
+        background-color: white;
+        color: #95dc84;
+        @include box-shadow(1px 1px 10px rgba(0,0,0,0.3));
+        @include flex-center-center;
+        @include border-radius(50%);
+
+    }
+}

@@ -1,0 +1,16 @@
+p code, li code{
+    border: 1px solid #ddd;
+    padding: 0 5px;
+    margin: 0 3px;
+    border-radius: 5px;
+    background-color: #eee;
+    font-size: 0.9em;
+}
+ul li{
+}
+#logo h1{
+    font-size: 64px;
+}
+#logo h2{
+    font-size: 48px;
+}
