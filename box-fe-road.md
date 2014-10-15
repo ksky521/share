@@ -427,7 +427,7 @@ document.getElementById(<span class="hljs-string">'content'</span>).innerHTML = 
 //or
 Bdbox.tmpl.test.test2(<span class="hljs-string">'content'</span>, data);
 {%/script%}
-</code></pre>script%}
+</code></pre>
 ```
 [note]
 ## 按H键有高亮动画
