@@ -12,7 +12,7 @@ highlightStyle: monokai_sublime
 [slide]
 ## 背景介绍
 ----
-* 手机百度是一款hybird APP {:&.moveIn}
+* 手机百度是一款hybrid APP {:&.moveIn}
 * 处于发展期，开发迭代快，主线版本并行开发
 * 琐碎事情
     * 接入方多 {:&.fadeIn}
@@ -607,7 +607,7 @@ Bdbox.c_discovery.foo('content', data);
     </div>
 </div>
 
-* 手机百度是一款hybird APP {:&.fadeIn}
+* 手机百度是一款hybrid APP {:&.fadeIn}
 * 增加了客户端RD的角色，需要跟其配合
 * 制定接口/接口联调/webview页面联调
 
