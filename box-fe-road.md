@@ -3,7 +3,7 @@ speaker: 三水清
 url: https://js8.in
 transition: move
 files: http://apps.bdimg.com/libs/fontawesome/4.0.3/css/font-awesome.min.css,/assets/box-fe-road/css/main.css
-highlightStyle: github
+highlightStyle: monokai_sublime
 
 [slide]
 # 手机百度前端工程化之路
@@ -219,7 +219,7 @@ module.exports = function(html, data) {
 ----
 ![combo模式](/assets/box-fe-road/img/combo-mode.png)
 
-nginx combo服务在跟OP协商部署中
+nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/template.js,bdbox/utils/getVersion.js)
 
 [slide]
 ## 根据网速智能切换渲染模式
@@ -242,7 +242,8 @@ nginx combo服务在跟OP协商部署中
 
 [slide]
 ## inline+localstorage存储
-### 解决慢速网络cache问题；粒度细/多维度，存储更多，降低更新频率
+### 解决慢速网络cache问题
+### 粒度细/多维度，存储更多，降低更新频率
 ----
 
 [slide]
@@ -320,7 +321,7 @@ cookie过期时间一周，不需要考虑版本号重叠问题
 * 开发中使用tag渲染模式，方便debug
 * localstorage细粒度多维度和自动化更新
 
-<p class="fadeIn"><span>哪天4G普及了，只要去掉慢速的分支既可以全部更换到最优方案</span></p>
+<p class="fadeIn"><span>哪天4G普及了，只要去掉慢速的判断分支，既可以全部更换到最优方案</span></p>
 
 [slide]
 
@@ -413,22 +414,25 @@ define('baiduboxapp:tmpl/test/test2', function(require, exports, module, $) {
 [slide]
 ## 模板使用
 ----
-```smarty
-{%require name="common:bdbox/template"%}
-<div id="content"></div>
+<pre><code class="smarty hljs r">{%<span class="hljs-keyword">require</span> name=<span class="hljs-string">"common:bdbox/template"</span>%}
+&lt;div id=<span class="hljs-string">"content"</span>&gt;&lt;/div&gt;
 {%script%}
-require('baiduboxapp:tmpl/test/test2');
+<em><span class="hljs-keyword">require</span>(<span class="hljs-string">'baiduboxapp:tmpl/test/test2'</span>);</em>
 var data = {
-    title:'加载模板演示',
+    title:<span class="hljs-string">'加载模板演示'</span>,
     time: +new Date(),
-    list: [...]
+    list: [<span class="hljs-keyword">...</span>]
 };
-var html = Bdbox.template('baiduboxapp:tmpl/test/test2', data);
-document.getElementById('content').innerHTML = html;
+var html = Bdbox.template(<span class="hljs-string">'baiduboxapp:tmpl/test/test2'</span>, data);
+document.getElementById(<span class="hljs-string">'content'</span>).innerHTML = html;
 //or
-Bdbox.tmpl.test.test2('content', data);
+Bdbox.tmpl.test.test2(<span class="hljs-string">'content'</span>, data);
 {%/script%}
-```
+</code></pre>
+
+[note]
+## 按H键，高亮代码
+[/note]
 
 [slide]
 ## rendermode="tag"的渲染模式下模板输出
@@ -510,19 +514,24 @@ module.exports = function(id, data){
 ```
 编译后：
 
-```javascript
-define('baiduboxapp:c_discovery/foo', function(require, exports, module, $){
-    var template=require("baiduboxapp:c_tmpl/discovery/foo");
-    function bindEvent(id){
+<pre class="fadeIn">
+<code class="javascript hljs ">define(<span class="hljs-string">'baiduboxapp:c_discovery/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(require, exports, module, $)</span>{</span>
+    <em><span class="hljs-keyword">var</span> template=<span class="hljs-built_in">require</span>(<span class="hljs-string">"baiduboxapp:c_tmpl/discovery/foo"</span>);</em>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bindEvent</span><span class="hljs-params">(id)</span>{</span>
         $.byId(id).addEventListener(xxx);
-        //....
+        <span class="hljs-comment">//....</span>
     }
-    module.exports = function(id, data){
+    module.exports = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, data)</span>{</span>
         template(id, data);
         bindEvent(id);
     }
 });
-```
+</code>
+</pre>
+
+[note]
+## 按H键，高亮代码
+[/note]
 
 [slide]
 ## 编译产生依赖关系表
@@ -580,44 +589,7 @@ Bdbox.c_discovery.foo('content', data);
 <p class="fadeIn"><span>结合之前的解决方案，webapp的组件化开发更加得心应手！《<a href="http://fe.baidu.com/doc/kuang/fe/components.text">详细文档</a>》</span></p>
 
 [slide]
-# 第七步：运营需求抽象成运营组件平台 {:&.flexbox.vleft}
-
-> 总结运营形式，接口化运营需求，缩短运营活动开发周期
-
-[slide]
-## 运营需求的解决
-----
-* 在主线并行的迭代节奏中，还有发版活动，踩点活动 {:&.moveIn}
-* 活动形式类似
-* 如果涉及后端逻辑，还要占用php人力
-* 将重复需求和活动形式抽象化
-
-[slide]
-## 运营组件开放平台
-----
-
-http://cms.m.baidu.com
-
-* 抽奖/用户/评论/投票/图像/答题 6类API
-* 前端JSSDK，无需后端，无视跨域，直接调用
-* 后端PHPSDK，高级定制
-* [接口测试平台](http://fe.baidu.com/doc/kuang/po/api-tool.html)
-* [文档平台](http://cms.m.baidu.com/wiki)
-* 手机百度端能力库开放
-
-
-[slide]
-## 文档平台管理
------
-有别于代码库的文档，运营组件平台的文档使用 [GitBook](http://gitbook.io) 管理文档平台
-
-* markdown语法支持
-* 有webkit内核的所见即所得编辑器
-* 上线打包是自动编译生成
-
-
-[slide]
-# 第六步：自己开发工具，减少等待联调成本 {:&.flexbox.vleft}
+# 第七步：自己开发工具，减少等待联调成本 {:&.flexbox.vleft}
 
 > 使用工具，对接口进行模拟，提前跑通流程，减少联调时间
 
