@@ -12,7 +12,7 @@ highlightStyle: monokai_sublime
 [slide]
 ## 背景介绍
 ----
-* 手机百度是一款hybird APP {:&.moveIn}
+* 手机百度是一款hybrid APP {:&.moveIn}
 * 处于发展期，开发迭代快，主线版本并行开发
 * 琐碎事情
     * 接入方多 {:&.fadeIn}
@@ -109,12 +109,12 @@ highlightStyle: monokai_sublime
 
 | 说明 | 包含模块
 :----------:|------|-------
-端能力   | 跟客户端相关 | ios，android，apad，invoke，moplus，lbs
-通用&方案 | 通信、事件、跨域、SPA | io，event，app，template，Deffered {:.highlight}
-工具     | 粒度小，用途广泛 | utils，cookie
+端能力   | 跟客户端相关 | ios，android，apad，invoke，moplus，lbs等
+通用&方案 | 通信、事件、跨域、SPA | io，event，app，xDomain，Deffered等 {:.highlight}
+工具     | 粒度小，用途广泛 | cookie，detect，dateFormat等
 性能&监控| 用户行为统计、速度监控和错误收集 | monitor，S，cache（ls/接口/静态资源）
 交互     | 页面交互相关，zepto扩展 | Dialog，mask，swipe，fastclick
-运营     | 抽奖游戏，pv和行为统计，跨域通信，游戏类 | 刮刮乐，摇一摇，跑马灯，舞台/精灵/对象池/easing
+运营     | 抽奖游戏，pv和行为统计，跨域通信，游戏类 | 刮刮乐，摇一摇，跑马灯，游戏舞台/精灵/对象池/easing
 
 18个大类，50+个模块，覆盖手机百度所有应用场景
 
@@ -122,15 +122,15 @@ highlightStyle: monokai_sublime
 [slide]
 ## 对模块的管理
 ----
-* 利用FIS-PLUS自动包裹
+* 利用FIS-PLUS自动包裹AMD规范（有别于官方）
 * 生成静态资源配置文件： `common-map.json`
-    * 跟FIS-PLUS不同，包含高频源码
-* 对smarty require/widget 进行改造
-    * 支持资源多种调用
-* 使用jsdoc产出[Bdbox文档](http://fe.baidu.com/doc/kuang/fe/docs/index.html)
+    * 扩展FIS-PLUS，包含高频源码和文件hash
+* 对smarty require/widget 标签语法进行改造
+    * 支持资源多种<b>动态</b>合并
+* 通过注释，使用jsdoc产出[Bdbox文档](http://fe.baidu.com/doc/kuang/fe/docs/index.html)
 
 [slide]
-## 模块编写
+## 模块编写：像写node模块
 ----
 ```javascript
 /**
@@ -156,6 +156,20 @@ module.exports = function(html, data) {
 ```
 
 [slide]
+## 编译后：AMD模块
+----
+```javascript
+define('common:bdbox/utils/template', function(require, exports, module, $){
+    module.exports = function(html, data) {
+        for (var i in data) {
+            html = html.replace(new RegExp('<%=\\s*' + i + '\\s*%>', 'g'), data[i]);
+        }
+        return html;
+    };
+});
+```
+
+[slide]
 # 第三步：模板根据action拆分成父子模板 {:&.flexbox.vleft}
 
 > 父模板做解决方案，子模板专注于业务，父子继承关系
@@ -177,15 +191,18 @@ module.exports = function(html, data) {
 [slide]
 # 第四步：父模板做解决方案 {:&.flexbox.vleft}
 
-> 利用FIS和Smarty标签扩展机制，做好解决方案；解决代码调试，速度性能，抽样和静态资源管理
+> 利用Smarty标签扩展机制，做好解决方案；解决代码调试，速度性能，抽样和静态资源管理
 
 [slide]
 ## 页面渲染模式
-### 解决debug，静态资源管理混乱问题
+### 解决联调成本和静态资源管理混乱等问题
 ----
 
-<pre class="bounceIn"><code class="smarty">{%html framework=&quot;common:bdbox&quot; rendermode=&quot;inline|tag|combo&quot;%}
+<pre class="bounceIn"><code class="smarty">{%html framework=&quot;common:bdbox&quot; rendermode=&quot;<b>inline|tag|combo</b>&quot;%}
 </code></pre>
+[note]
+## 按H键，有动效
+[/note]
 
 [slide]
 ## 页面渲染模式介绍
@@ -209,7 +226,7 @@ module.exports = function(html, data) {
 
 [slide]
 ## tag模式
-### 线下环境，适合debug
+### 线下开发调试环境，适合debug
 ----
 ![tag模式](/assets/box-fe-road/img/tag-mode.png)
 
@@ -219,7 +236,13 @@ module.exports = function(html, data) {
 ----
 ![combo模式](/assets/box-fe-road/img/combo-mode.png)
 
+<<<<<<< HEAD
 nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/template.js,bdbox/utils/getVersion.js)
+=======
+nginx combo服务[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/utils/getVersion.js)
+
+`combo.php`是线下测试combo的文件，实际使用场景中文件url都带有hash值
+>>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 
 [slide]
 ## 根据网速智能切换渲染模式
@@ -227,18 +250,21 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 * 客户端知道用户现在所处网络环境，而且页面公共参数含有该信息
 * wise有ip测速库
 
-```smarty
-<!DOCTYPE html>
-{%if $network == 'fast' %}
-    {%html rendermode="combo"%}
-{%else%}
-    {%html rendermode="inline" localstorage="true" lscookiepath="/xxx" %}
-{%/if%}
-{%head%}
+<pre><code class="smarty hljs mel">&lt;!DOCTYPE html&gt;
+<em>{<span class="hljs-variable">%if</span> <span class="hljs-variable">$network</span> == <span class="hljs-string">'fast'</span> <span class="hljs-variable">%}</span>
+    {<span class="hljs-variable">%html</span> rendermode=<span class="hljs-string">"combo"</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%else</span><span class="hljs-variable">%}</span>
+    {<span class="hljs-variable">%html</span> rendermode=<span class="hljs-string">"inline"</span> localstorage=<span class="hljs-string">"true"</span> lscookiepath=<span class="hljs-string">"/xxx"</span> <span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%/</span><span class="hljs-keyword">if</span><span class="hljs-variable">%}</span></em>
+{<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
 .....
-{%/head%}
+{<span class="hljs-variable">%/</span>head<span class="hljs-variable">%}</span>
 ....
-```
+</code></pre>
+
+[note]
+## 按H键，有动效
+[/note]
 
 [slide]
 ## inline+localstorage存储
@@ -254,15 +280,15 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
     * 业务代码更新不会下发基础和通用代码
 * 利用cookie记录版本号，避免二次请求
 * 多维度
-    * 原理：cookie可根据domain和path设置
+    * 原理：cookie可根据domain和path两个维度设置
     * 条件：不同频道页面path不同，但是domain相同
     * 效果：访问A频道，再访问B频道，B频道跟A相同的代码将不再下发
 * 打包自动更新版本配置文件：localstorage.json和lsconfig.php
 * 打包工具自动包裹版本逻辑
 
 [slide]
-## localstorage.json
-
+## localstorage.json举例
+----
 ```json
 {
     "jA": {
@@ -284,11 +310,14 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 [slide]
 ## 文件版本逻辑自动生成
 ----
+
 ```html
 <script data-lsid="jZ">
     __inline('/static/js/zepto.js');
 </script>
 ```
+
+编译后：
 
 ```smarty
 {%if ($_ls_nonsupport) || ($_parsedLSCookies.jZ.isUpdate ) %}
@@ -299,7 +328,8 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
     <script>LS.exec("jZ","js");</script>
 {%/if%}
 ```
-有效避免新手出错，解放双手！
+* 有效避免新手出错，解放双手！
+* php判断变量都是通过解析`localstorage.json`和对比cookie得到的
 
 [slide]
 ## cookie存储版本号效果
@@ -317,11 +347,15 @@ cookie过期时间一周，不需要考虑版本号重叠问题
 ---
 * 通过客户端公共参数和wise测速ip库智能选择页面渲染模式
 * 2G等网络延时长使用inline和localstorage存储
-* 3G+使用CDN+combo渲染模式
-* 开发中使用tag渲染模式，方便debug
+* 3G以上使用CDN+combo渲染模式
+* 开发中使用tag渲染模式，方便快速定位bug所在模块
 * localstorage细粒度多维度和自动化更新
 
+<<<<<<< HEAD
 <p class="fadeIn"><span>哪天4G普及了，只要去掉慢速的判断分支，既可以全部更换到最优方案</span></p>
+=======
+<p class="fadeIn"><span>哪天4G普及了，只要去掉慢速的逻辑分支，既可以全部更换到最优方案</span></p>
+>>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 
 [slide]
 
@@ -336,6 +370,7 @@ cookie过期时间一周，不需要考虑版本号重叠问题
 * 性能
 * 扩展能力
 * 编译支持
+* 国人开发，情怀~
 
 [slide]
 ## 模板选型
@@ -429,9 +464,15 @@ document.getElementById(<span class="hljs-string">'content'</span>).innerHTML = 
 Bdbox.tmpl.test.test2(<span class="hljs-string">'content'</span>, data);
 {%/script%}
 </code></pre>
+<<<<<<< HEAD
 
 [note]
 ## 按H键，高亮代码
+=======
+```
+[note]
+## 按H键有高亮动画
+>>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 [/note]
 
 [slide]
@@ -446,6 +487,7 @@ Bdbox.tmpl.test.test2(<span class="hljs-string">'content'</span>, data);
 * 编译成Bdbox模块
 * 依赖关系自动维护
 * 减少js模板编译时间
+* 解决跨域拉取string模板的问题
 * 看不到js模板的存在！
 
 [slide]
@@ -453,22 +495,6 @@ Bdbox.tmpl.test.test2(<span class="hljs-string">'content'</span>, data);
 
 > 组件化之后，做页面更像再玩积木游戏
 
-[slide]
-## 组件化目录结构
-----
-```bash
-# component 发现频道
-discovery
-├─header # 头部
-│      header.css
-│      header.js
-│      header.tmpl
-│
-└─comment # 评论
-        comment.css
-        comment.js
-        comment.tmpl
-```
 
 [slide]
 ### 组件化
@@ -476,6 +502,24 @@ discovery
 * 一个UI组件由：tmpl、js和css构成
 * js文件是组件的核心
 * 组件内css/js/tmpl 产生依赖关系
+
+
+[slide]
+## 组件化目录结构
+----
+```bash
+# component举例：发现频道
+components/discovery
+    ├─header # 头部大banner
+    │      header.css
+    │      header.js
+    │      header.tmpl
+    │
+    └─comment # 评论
+            comment.css
+            comment.js
+            comment.tmpl
+```
 
 [slide]
 ## 组件化举例：`discovery/foo`
@@ -514,8 +558,12 @@ module.exports = function(id, data){
 ```
 编译后：
 
+<<<<<<< HEAD
 <pre class="fadeIn">
 <code class="javascript hljs ">define(<span class="hljs-string">'baiduboxapp:c_discovery/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(require, exports, module, $)</span>{</span>
+=======
+<pre class="fadeIn"><code class="javascript hljs ">define(<span class="hljs-string">'baiduboxapp:c_discovery/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(require, exports, module, $)</span>{</span>
+>>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
     <em><span class="hljs-keyword">var</span> template=<span class="hljs-built_in">require</span>(<span class="hljs-string">"baiduboxapp:c_tmpl/discovery/foo"</span>);</em>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bindEvent</span><span class="hljs-params">(id)</span>{</span>
         $.byId(id).addEventListener(xxx);
@@ -526,11 +574,17 @@ module.exports = function(id, data){
         bindEvent(id);
     }
 });
+<<<<<<< HEAD
 </code>
 </pre>
 
 [note]
 ## 按H键，高亮代码
+=======
+</code></pre>
+[note]
+## 按H键有高亮动画
+>>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 [/note]
 
 [slide]
@@ -538,9 +592,6 @@ module.exports = function(id, data){
 -----
 
 ```json
-"baiduboxapp:c_css/discovery/foo": {
-    "uri": "baiduboxapp/components/css/discovery/foo.css",
-},
 "baiduboxapp:c_discovery/foo": {
     "deps": [
         "baiduboxapp:c_css/discovery/foo",
@@ -551,6 +602,9 @@ module.exports = function(id, data){
         "baiduboxapp:c_tmpl/discovery/public/header",
         "baiduboxapp:c_tmpl/discovery/public/footer",
         "baiduboxapp:c_css/discovery/foo"    ]
+},
+"baiduboxapp:c_css/discovery/foo": {
+    "uri": "baiduboxapp/components/css/discovery/foo.css",
 },
 "baiduboxapp:c_tmpl/discovery/public/footer": {
     "deps": [ "baiduboxapp:c_tmpl/discovery/public/logo" ]
@@ -588,6 +642,10 @@ Bdbox.c_discovery.foo('content', data);
 
 <p class="fadeIn"><span>结合之前的解决方案，webapp的组件化开发更加得心应手！《<a href="http://fe.baidu.com/doc/kuang/fe/components.text">详细文档</a>》</span></p>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 [slide]
 # 第七步：自己开发工具，减少等待联调成本 {:&.flexbox.vleft}
 
@@ -610,7 +668,7 @@ Bdbox.c_discovery.foo('content', data);
     </div>
 </div>
 
-* 手机百度是一款hybird APP {:&.fadeIn}
+* 手机百度是一款hybrid APP {:&.fadeIn}
 * 增加了客户端RD的角色，需要跟其配合
 * 制定接口/接口联调/webview页面联调
 
@@ -621,10 +679,14 @@ Bdbox.c_discovery.foo('content', data);
 * ORP线上第一台可以调试数据
 * 模拟数据放在 `tpl/test` 中，供他人复用
 
+实际开发中，FE先自己指定数据格式，并且本地调试数据，等PHPer开发完，让其按照调试数据格式输出data即可~
+
 [slide]
 ## 利用chrome扩展减少和CRD联调过成本
 -----
 ![chrome扩展](/assets/box-fe-road/img/chrome.png)
+
+实际开发中，FE利用chrome扩展，在document_start时注入js，模拟webview的js接口；等CRD开发完成，直接调用真是js接口即可~
 
 [slide]
 ## 手机百度chrome扩展功能
@@ -644,6 +706,12 @@ Bdbox.c_discovery.foo('content', data);
     <h1>天蝎</h1>
     <h2>&lt;/Scorpion&gt;</h2>
 </div>
+
+[note]
+* 整个工程化系统叫天蝎
+* 整个FE-team叫天蝎（6人，2女，天蝎座）
+* 对应美剧《天蝎》六个人，两个女生O(∩_∩)O~
+[/note]
 
 [slide]
 [note]
