@@ -1,7 +1,7 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: slide3
+transition: stick
 files: /css/theme.moon.css
 highlightStyle: monokai_sublime
 
@@ -31,49 +31,45 @@ highlightStyle: monokai_sublime
 
 
 [slide]
-# 搜索结果页速度优化 {:&.flexbox.vleft}
+# 搜索结果页速度优化
 
-> 百度APP的第一大需求是搜索
+<small>百度APP的第一大需求是搜索</small>
 
 [slide]
 ## 网络传输层
 ----
-* DNS预连接 {:&.moveIn}
-* SPDY协议：T5内核支持
-* 严格限制上行
-* 减少下行
+{:&.fadeIn}
+
+<span class="yellow">DNS预连接</span> / <span class="yellow">SPDY协议</span> / <span class="yellow">限制上行</span> / <span class="yellow">减少下行</span>
+
+
 
 [slide]
 ## 代码层次优化
 ----
-* localstorage缓存
-* 首屏代码优化
-* 渲染优先
-* 同步wise成果
+{:&.fadeIn}
+
+<span class="red">ls缓存</span> / <span class="red">首屏优化</span> / <span class="red">渲染优先</span> / <span class="red">同步wise成果</span>
+
 
 [slide]
 ## 用户感知
 ----
-* 进度条
-* 底部搜索框
+{:&.fadeIn}
+
+<span class="yellow">进度条优化</span> / <span class="yellow">底部搜索框</span>
+
 
 [slide]
 # 频道页速度优化
 
 [slide]
-## localstorage缓存
------
-* 将使用频率高的代码存入localstorage
-* 版本号使用cookie携带
-
-[slide]
 ## 升级版localstorage缓存
 -----
-<h3 class="bounceIn"><span>特点一：细粒度</span></h3>
+<h3 class="bounceIn"><span class="red">特点一：细粒度</span></h3>
 
 * 代码分层： {:&.moveIn} <span class="fadeIn"><span>基础层</span> <span>通用层</span> <span>业务层</span></span>
 * 版本号缩短：<span class="fadeIn"><span>36进制</span></span>
-* cookie携带版本：<span class="fadeIn"><span>避免二次请求</span></span>
 
 <div class="zoomIn" style="width:300px;margin:20px auto 0">
     <table>
@@ -81,46 +77,50 @@ highlightStyle: monokai_sublime
         <tr><td>value</td><td class="highlight">jA-1_jZ-3_cN-1</td></tr>
     </table>
 </div>
+
 [slide]
 ## 升级版localstorage缓存
 -----
-<h3 class="bounceIn"><span>特点二：多维度</span></h3>
+<h3 class="bounceIn"><span class="red">特点二：多维度</span></h3>
 
 * 利用cookie二维性： {:&.moveIn} <span class="fadeIn"><span>domain / </span><span>path</span></span>
 * domain：<span class="fadeIn"><span>全域名公共版本号</span></span>
 * path：<span class="fadeIn"><span>频道级别版本号</span></span>
+
 
 [slide]
 ## 升级版localstorage缓存
 -----
 
 key | domain | path | value
-:------|:---------:|:------:|:----:
-bdapp_lsv | po.m.baidu.com | / | jA-1_jZ-3_jB-2
-bdapp_ls | po.m.baidu.com | /novel | cN-1_jN-2
-bdapp_ls | po.m.baidu.com | /discovery | cD-1_jD-2_jT-2
+:------|:---------:|:------:|----
+bdapp_lsv | x.baidu.com | / | jA-1_jZ-3_jB-2
+bdapp_ls {:.highlight} | x.baidu.com | /novel {:.highlight} | cN-1_jN-2
+bdapp_ls {:.highlight} | x.baidu.com | /discovery {:.highlight} | cD-1_tD-2_jT-2
 
 
 [slide]
 ## 智能渲染模式
 ----
-从静态资源输出上来区分，渲染模式分为：
-* 内嵌
+从静态资源输出格式来区分，渲染模式分为：
+
+内嵌 {:.yellow}
 
 ```html
 <script>code</script>
 ```
 
-* 外链
+外链 {:.yellow}
 
 ```html
 <script src="//code/path"></script>
 ```
 
 [slide]
+## 能不能两种+模式相互切换？
 ## 静态资源怎么管理？
 ------
-<h3 class="bounceIn"><span>我们需要一张资源配置表！</span></h3>
+<h3 class="bounceIn"><span class="red">答案就是一张资源配置表！</span></h3>
 
 [slide]
 ## 页面渲染模式介绍
@@ -153,15 +153,16 @@ bdapp_ls | po.m.baidu.com | /discovery | cD-1_jD-2_jT-2
 ----
 ![combo模式](/assets/box-fe-road/img/combo-mode.png)
 
-nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/template.js,bdbox/utils/getVersion.js)
 
 `combo.php`是线下测试combo的文件，实际使用场景中文件url都带有hash值
 
 [slide]
 ## 根据网速智能切换渲染模式
 ----
-* 客户端知道用户现在所处网络环境，而且页面公共参数含有该信息 {:&.moveIn}
-* wise有ip测速库
+<p class="moveIn"><span class="yellow">客户端知道页面访问时，用户所处网络环境</span></p>
+<p class="fadeIn">
+    <span class="yellow">根据IP测速库可推算出网络延迟</span>
+</p>
 
 <pre class="fadeIn"><code class="smarty hljs mel">&lt;!DOCTYPE html&gt;
 <em>{<span class="hljs-variable">%if</span> <span class="hljs-variable">$network</span> == <span class="hljs-string">'fast'</span> <span class="hljs-variable">%}</span>
