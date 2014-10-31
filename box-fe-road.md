@@ -236,13 +236,9 @@ define('common:bdbox/utils/template', function(require, exports, module, $){
 ----
 ![combo模式](/assets/box-fe-road/img/combo-mode.png)
 
-<<<<<<< HEAD
 nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/template.js,bdbox/utils/getVersion.js)
-=======
-nginx combo服务[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/utils/getVersion.js)
 
 `combo.php`是线下测试combo的文件，实际使用场景中文件url都带有hash值
->>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 
 [slide]
 ## 根据网速智能切换渲染模式
