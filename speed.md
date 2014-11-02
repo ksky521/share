@@ -1,7 +1,7 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: stick
+transition: slide2
 files: /css/theme.moon.css
 highlightStyle: monokai_sublime
 
@@ -33,7 +33,7 @@ highlightStyle: monokai_sublime
 [slide]
 # 搜索结果页速度优化
 
-<small>百度APP的第一大需求是搜索</small>
+<small>搜索是百度APP的第一大需求</small>
 
 [slide]
 ## 网络传输层
