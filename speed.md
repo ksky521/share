@@ -23,12 +23,20 @@ highlightStyle: monokai_sublime
 * web页面性能监控平台 {:&.moveIn}
     * 收集客户端+web页面数据 {:&.fadeIn}
 * 客户端性能监控平台
-    * 每次CI都自动做性能分析 {:&.fadeIn}
-    * 发版前速度准入
+    * CI级别的性能监控 {:&.fadeIn}
+    * 发版前速度准入，灰度收集速度数据
 
 [slide]
-整个监控从4.8版本开始建设，到5.2版本完成，期间使用了高速摄像头等设备验证了一些结论
+整个监控从4.8版本开始建设，到5.2版本完成
 
+期间使用了高速摄像头等设备验证了一些结论
+
+
+![](../img/speed/camera.jpg)
+
+[slide]
+
+![](../img/speed/client.png)
 
 [slide]
 # 搜索结果页速度优化
