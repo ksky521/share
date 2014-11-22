@@ -123,11 +123,12 @@ highlightStyle: monokai_sublime
 [slide]
 ## 用户感知
 ----
-{:&.fadeIn}
 
-<span class="yellow">进度条优化</span> / <span class="yellow">底部搜索框</span>
+<p class="fadeIn">
+<span class="yellow">进度条优化</span> &nbsp; <span class="yellow">底部搜索框</span>
+</p>
 
-<div class="column-2">
+<div class="column-2 fadeIn">
     <img src="../img/speed/8.pic.jpg" alt="">
     <img src="../img/speed/7.pic.jpg" alt="">
 </div>
@@ -239,11 +240,11 @@ combo {:.yellow}
 ## 能不能在用户访问页面时，根据当时的网络环境自动在3种模式间切换？
 
 [slide]
-## 其实：这是一个静态资源如何管理的问题
-<h3 class="bounceIn"><span class="red">利用FIS release后的map.json！</span></h3>
+## 这是一个静态资源如何管理的问题
+<h3 class="bounceIn"><span class="red">利用FIS release后的`map.json`！</span></h3>
 
 [slide]
-## map.json
+## `map.json`
 -----
 
 ```json
@@ -290,9 +291,9 @@ combo {:.yellow}
 </p>
 
 <pre class="fadeIn"><code class="smarty hljs mel">&lt;!DOCTYPE html&gt;
-<em>{<span class="hljs-variable">%if</span> <span class="hljs-variable">$network</span> == <span class="hljs-string">'fast'</span> <span class="hljs-variable">%}</span>
+<em>{%<span class="hljs-keyword">if</span> <span class="hljs-variable">$network</span> == <span class="hljs-string">'fast'</span> <span class="hljs-variable">%}</span>
     {<span class="hljs-variable">%html</span> rendermode=<span class="hljs-string">"combo"</span><span class="hljs-variable">%}</span>
-{<span class="hljs-variable">%else</span><span class="hljs-variable">%}</span>
+{<span class="hljs-variable">%<span class="hljs-keyword">else</span></span><span class="hljs-variable">%}</span>
     {<span class="hljs-variable">%html</span> rendermode=<span class="hljs-string">"inline"</span> localstorage=<span class="hljs-string">"true"</span> lscookiepath=<span class="hljs-string">"/xxx"</span> <span class="hljs-variable">%}</span>
 {<span class="hljs-variable">%/</span><span class="hljs-keyword">if</span><span class="hljs-variable">%}</span></em>
 {<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
