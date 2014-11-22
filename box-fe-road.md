@@ -347,11 +347,7 @@ cookie过期时间一周，不需要考虑版本号重叠问题
 * 开发中使用tag渲染模式，方便快速定位bug所在模块
 * localstorage细粒度多维度和自动化更新
 
-<<<<<<< HEAD
-<p class="fadeIn"><span>哪天4G普及了，只要去掉慢速的判断分支，既可以全部更换到最优方案</span></p>
-=======
 <p class="fadeIn"><span>哪天4G普及了，只要去掉慢速的逻辑分支，既可以全部更换到最优方案</span></p>
->>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 
 [slide]
 
@@ -460,15 +456,9 @@ document.getElementById(<span class="hljs-string">'content'</span>).innerHTML = 
 Bdbox.tmpl.test.test2(<span class="hljs-string">'content'</span>, data);
 {%/script%}
 </code></pre>
-<<<<<<< HEAD
 
 [note]
-## 按H键，高亮代码
-=======
-```
-[note]
 ## 按H键有高亮动画
->>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 [/note]
 
 [slide]
@@ -554,12 +544,8 @@ module.exports = function(id, data){
 ```
 编译后：
 
-<<<<<<< HEAD
 <pre class="fadeIn">
 <code class="javascript hljs ">define(<span class="hljs-string">'baiduboxapp:c_discovery/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(require, exports, module, $)</span>{</span>
-=======
-<pre class="fadeIn"><code class="javascript hljs ">define(<span class="hljs-string">'baiduboxapp:c_discovery/foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(require, exports, module, $)</span>{</span>
->>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
     <em><span class="hljs-keyword">var</span> template=<span class="hljs-built_in">require</span>(<span class="hljs-string">"baiduboxapp:c_tmpl/discovery/foo"</span>);</em>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bindEvent</span><span class="hljs-params">(id)</span>{</span>
         $.byId(id).addEventListener(xxx);
@@ -570,17 +556,11 @@ module.exports = function(id, data){
         bindEvent(id);
     }
 });
-<<<<<<< HEAD
 </code>
 </pre>
 
 [note]
-## 按H键，高亮代码
-=======
-</code></pre>
-[note]
 ## 按H键有高亮动画
->>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 [/note]
 
 [slide]
@@ -638,10 +618,6 @@ Bdbox.c_discovery.foo('content', data);
 
 <p class="fadeIn"><span>结合之前的解决方案，webapp的组件化开发更加得心应手！《<a href="http://fe.baidu.com/doc/kuang/fe/components.text">详细文档</a>》</span></p>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 13f54588c2849846ec3df54dfd2eb9935d7af1e7
 [slide]
 # 第七步：自己开发工具，减少等待联调成本 {:&.flexbox.vleft}
 
