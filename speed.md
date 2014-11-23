@@ -48,6 +48,8 @@ highlightStyle: monokai_sublime
 </div>
 
 [note]
+
+什么是真实的用户体验：用户从点击搜索按钮开始，一直到用户看到首屏。
 主要关注的时间点有：
 
 * 用户输入query时间
@@ -119,6 +121,7 @@ highlightStyle: monokai_sublime
 * 基础库下移
 * 非首屏css下移
 * chunk等项目
+* 减少图片，采用css3
 [/note]
 [slide]
 ## 用户感知
@@ -147,6 +150,10 @@ highlightStyle: monokai_sublime
 ## cookie版localstorage缓存
 ------
 ![](../img/speed/ls-plus.png)
+
+[note]
+疑问？cookie能存多少版本号？cookie多大合适？太大是否会限制上行速度，造成速度退化？
+[/note]
 
 [slide]
 ## 升级版localstorage缓存
@@ -177,8 +184,8 @@ cookie有效期一周，36进制可以保证版本号长度始终为1！
 <h3 class="bounceIn"><span class="red">特点二：多维度</span></h3>
 
 * 利用cookie二维性： {:&.moveIn} <span class="fadeIn"><span>domain / </span><span>path</span></span>
-* domain：<span class="fadeIn"><span>全站都用的模块版本号，zepto等</span></span>
-* path：<span class="fadeIn"><span>频道级别通用版本号，common样式</span></span>
+* domain：<span class="fadeIn"><span>全站都用的模块版本号，zepto、reset等</span></span>
+* path：<span class="fadeIn"><span>频道级别通用+业务代码版本号，common样式和具体业务模块</span></span>
 
 
 [slide]
@@ -197,17 +204,20 @@ bdapp_ls {:.highlight} | x.baidu.com | /discovery {:.highlight} | cD-1_tD-2_jT-2
 [slide data-transition="cover-diamond"]
 ## 静态资源的引入方式
 ----
-从静态资源引入格式来，将html渲染模式分为：
+从静态资源引入方式来区分，将html渲染模式分为：
 
 内嵌(inline) {:.yellow}
 
 ```html
 <script>code</script>
+<style>xxx</style>
 ```
 
 外链(tag) {:.yellow}
 
 ```html
+<link href="//domain.com/css/path_0.css" rel="stylesheet"/>
+<link href="//domain.com/css/path_1.css" rel="stylesheet"/>
 <script src="//domain.com/code/path_0.js"></script>
 <script src="//domain.com/code/path_1.js"></script>
 ```
@@ -215,6 +225,7 @@ bdapp_ls {:.highlight} | x.baidu.com | /discovery {:.highlight} | cD-1_tD-2_jT-2
 combo {:.yellow}
 
 ```html
+<link href="//domain.com/??css/path_0.css,css/path_1.css" rel="stylesheet" />
 <script src="//domain.com/??code/path_0.js,code/path_1.js"></script>
 ```
 
@@ -222,17 +233,17 @@ combo {:.yellow}
 ## 优劣比较
 -------
 * inline {:&.moveIn}
-    * http请求少，省电，但是每次代码都要下发
+    * http请求少，不存在并发下载问题，省电，但是每次代码都要下发
     * 可以通过localstorage做缓存，不过有实现成本
     * 单域名ls存储空间有限，命名冲突
 * tag
     * 利用http协议实现cache
-    * 页面模块多，则外链多，请求也多
+    * 页面模块多，则外链多，请求也多，存在并发限制，费电
 * combo
     * 将页面多个请求合并成一个
     * 减少http请求，可结合CDN和http协议cache优势
 
-[slide]
+[slide data-transition="cover-diamond"]
 
 {:&.fadeIn}
 
@@ -263,20 +274,37 @@ combo {:.yellow}
 
 [slide]
 ## inline模式
-### 线上环境，适合慢速网络
+### <span class="yellow">线上环境</span>，适合<span class="red">慢速</span>网络
 ----
+{:&.fadeIn}
+
+```html
+{%html rendermode="inline"%}
+```
 ![inline模式](/assets/box-fe-road/img/inline-mode.png)
 
 [slide]
 ## tag模式
-### 线下开发调试环境，适合debug
+### <span class="yellow">线下开发环境</span>，适合<span class="red">debug</span>
 ----
+{:&.fadeIn}
+
+```html
+{%html rendermode="tag"%}
+```
+
 ![tag模式](/assets/box-fe-road/img/tag-mode.png)
 
 [slide]
 ## combo模式
-### 线上环境，适合3G+网络
+### <span class="yellow">线上环境</span>，适合<span class="red">3G及以上</span>网络
 ----
+{:&.fadeIn}
+
+```html
+{%html rendermode="combo"%}
+```
+
 ![combo模式](/assets/box-fe-road/img/combo-mode.png)
 
 
