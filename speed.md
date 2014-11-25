@@ -1,7 +1,7 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: pulse
+transition: fade
 files: /css/theme.moon.css,/js/speed/puff.js
 highlightStyle: monokai_sublime
 
@@ -10,329 +10,172 @@ highlightStyle: monokai_sublime
 <small><a href="//weibo.com/sanshuiqing">@三水清</a></small>
 
 [slide]
-# 项目背景介绍
+## 目录
+--------
+
+* 项目背景
+* 整个搜索流程和分工
+* 以真实用户体验为标准
+* 怎样和客户端一起做速度项目
+
+[slide]
+## 项目背景
 ------
-<p>手机百度hybrid app页面主要分两个模块：搜索和频道+配置</p>
-<div class="fade">
-    <img src="../img/speed/2.pic.jpg" alt="首页">
-    <img src="../img/speed/1.pic.jpg" alt="搜索结果页">
-    <img src="../img/speed/3.pic.jpg" alt="频道页面">
-    <img src="../img/speed/4.pic.jpg" alt="频道页面">
-</div>
-
-
-[slide data-transition="cover-diamond"]
-
-# 建立监控平台 {:&.flexbox.vleft}
-
-> 摸底数据，数据分析，效果评估
+* 2013年7月：搜索速度需要与wise搜索速度持平，并超越wise
+    * KPI： 3G+wifi用户，80%可以在1s内看到首屏
+* 2013年11月：做搜索最快的客户端
+    * KPI： 搜索速度超越竞品
 
 
 [slide]
-## 监控平台
+## 整个搜索流程
+------
+
+![搜索流程](../img/speed/framework.png)
+
+
+<h3 class="fadeIn"><span>流程决定了项目分工</span></h3>
+
+
+[slide]
+## 整个项目划分
+-------
+* 优化：核心工作
+* 监控：知己知彼
+* 准入：保驾护航
+
+
+[slide]
+## 以真实用户体验为标准
 ----
-* web页面性能监控平台 {:&.moveIn}
-    * 收集客户端加载网页和web页面渲染数据 {:&.fadeIn}
-* 客户端性能监控平台
-    * CI级别的性能监控 {:&.fadeIn}
-    * 发版前速度准入，灰度收集速度数据
+* 怎样收集用户整个搜索体验时间？ {:&.fadeIn}
+* 究竟我们和竞品的差距在哪里？
+* js打点得来的数据真的能表现真实的用户体验吗？
+* 用户的使用习惯真的是我们想象的吗？
+
+
+<p class="fadeIn"><span>要解答上面问题，就需要利用监控系统来做数据分析！</span></p>
 
 [slide]
-* web监控：更加关注的是**用户真实体验**
-* client对关键时间点进行打点
-* 页面通过js接口获取客户端性能数据
-* web监控采用**js打点**作为参考值
+## 收集完整搜索体验时间
+---------
+![搜索流程](../img/speed/framework.png)
+
+* 客户端时间 = 客户端打点 {:&.fadeIn}
+* 服务器时间 = logid标注
+* 页面渲染时间 = js埋点
+* 网络时间 = js首字节时间-客户端loadUrl时间
+
+[slide]
+## 现状&竞品数据
+-----
+
+
+                | 手机百度 | UC          | 数据测算方法  | 解决方法
+----------------| --------| ------------| -----------  |----------
+点击搜索到首屏展示| 2497ms  | 1222ms      | 上下游统计    | --
+客户端耗时       | 882ms   | N/A         | 客户端RD测算  | <span>精简动画/框架</span> {:&.fadeIn}
+网络+服务器耗时  | 878ms+300ms|608+360ms  | 请求log日志  | <span>内核/链路等</span> {:&.fadeIn}
+首屏渲染         | 437ms    | 254ms      | js埋点       | <span>内核/差异化模板</span> {:&.fadeIn}
+
+P.S：wifi环境，15日均值
+
+<h3 class="bounceIn"><span>客户端：网络：页面 = </span><span class="yellow">2: 2: 1</span></h3>
+
+[note]
+* 解决了第一个疑问：我们究竟和竞品差距在哪里？
+* 大家都知道各自分工和差距
+* 工作点
+[/note]
+
+
+[slide]
+## js打点是否是真实的用户体验？
+----------
 
 <div class="fade">
     <img src="../img/speed/camera.jpg" alt="">
 </div>
 
-[note]
 
-什么是真实的用户体验：用户从点击搜索按钮开始，一直到用户看到首屏。
-主要关注的时间点有：
+[slide]
+## 高速摄像头测试数据
+### 冷启动时间（优化后）
+----------
+![冷启动时间](../img/speed/lengqidong.png)
 
-* 用户输入query时间
-* client初始化
-* client转场动画时间
-* 网络时间
-* 页面首屏渲染时间
+手机百度5.0  >  UC 9.4  > UC 9.5 > QQ 5.0.1.660
 
+[slide]
+## 高速摄像头测试数据
+### 搜索结果（优化后）
+----------
+![搜索结果](../img/speed/result1.png)
 
-维度：
+手机百度在稳定性和速度上都超过竞品
 
-* 网络类型
-* 版本号
-* 内核
-* 系统等
-[/note]
+[slide]
+## js打点是否是真实的用户体验？
+----------
+
+![](../img/speed/js.png)
+
+[slide]
+## 结论
+* js打点方式要早于UI展现 {:&.fadeIn}
+* 两者走势是match的
+* <span class="yellow">有内核反而更差，为什么？</span>
+* <span class="yellow">从“切片”到&lt;paint>标签</span>
 
 
 [slide]
-## 客户端的监控平台
+## 用户的使用习惯真的是我们想象的吗？
 -----
-![](../img/speed/client.png)
+* 用户输入搜索词时间：10s~14s {:&.fadeIn}
+* 空sug比例：20%
+* 用户很关注进度条
+* 底部搜索框使用情况：&lt;5‰
 
 [slide]
-## 通过**python+adb**脚本实现
+## 基于用户使用习惯我们做了什么？
+----
+
+* 利用用户输入搜索词时间： DNS预连接
+* sug：空sug不发请求，sug预充
+* 体验优化
+
+[slide]
+## 用户很关注进度条：强迫症吗？
 -----
-![](../img/speed/6.pic.jpg)
+
+![进度条](../img/speed/8.pic.jpg)
 
 [note]
-关注指标：
-* 冷启动时间
-* 热启动时间
-* 头图展现时间
-* 首屏卡片展现时间
+两个视频
 [/note]
 
-
-[slide data-transition="cover-diamond"]
-# 搜索结果页速度优化
-
-<small>搜索是手机百度的第一大需求</small>
-
 [slide]
-## 网络传输层
-----
-{:&.fadeIn}
-
-<span class="yellow">DNS预连接</span> / <span class="yellow">SPDY协议</span> / <span class="yellow">限制上行</span> / <span class="yellow">减少下行</span>
-
-[note]
-限制上行：
-
-* 缩短url
-* 减少cookie
-* 增加cookie白名单
-
-减少下行：重点减少页面大小
-[/note]
-
-
-[slide]
-## 代码层次优化
-----
-{:&.fadeIn}
-
-<span class="red">ls缓存</span> / <span class="red">首屏优化</span> / <span class="red">渲染优先</span> / <span class="red">同步wise成果</span>
-
-[note]
-* 基础库下移
-* 非首屏css下移
-* chunk等项目
-* 减少图片，采用css3
-[/note]
-[slide]
-## 用户感知
-----
-
-<p class="fadeIn">
-<span class="yellow">进度条优化</span> &nbsp; <span class="yellow">底部搜索框</span>
-</p>
-
-<div class="column-2 fadeIn">
-    <img src="../img/speed/8.pic.jpg" alt="">
-    <img src="../img/speed/7.pic.jpg" alt="">
-</div>
-
-[slide data-transition="cover-diamond"]
-# 频道页速度优化
-<small>localstorage和html渲染模式</small>
-
-[slide]
-## 二次拉取版localstorage缓存
+## 底部框AB实验
 ------
-![](../img/speed/ls.png)
 
-
-[slide]
-## cookie版localstorage缓存
-------
-![](../img/speed/ls-plus.png)
+* AA实验
+* AB实验
 
 [note]
-疑问？cookie能存多少版本号？cookie多大合适？太大是否会限制上行速度，造成速度退化？
+保证数量和性质都一致
 [/note]
 
 [slide]
-## 升级版localstorage缓存
------
-<h3 class="bounceIn"><span class="red">特点一：细粒度</span></h3>
+## 去除后数据
+--------
 
-* 代码分层： {:&.moveIn} <span class="fadeIn"><span>基础层</span> <span>通用层</span> <span>业务层</span></span>
-* 版本号缩短：<span class="fadeIn"><span>36进制</span></span>
-
-<div class="zoomIn" style="width:300px;margin:20px auto 0">
-    <table>
-        <tr><td>key</td><td>bdapp_lsv</td></tr>
-        <tr><td>value</td><td class="highlight">jA-1_jZ-3_cN-1</td></tr>
-    </table>
-</div>
-[note]
-* 基础层：zepto，zepto-ajax
-* 通用层：Bdbox
-* 业务层：业务逻辑代码
-
-cookie有效期一周，36进制可以保证版本号长度始终为1！
-
-[/note]
-
-[slide]
-## 升级版localstorage缓存
------
-<h3 class="bounceIn"><span class="red">特点二：多维度</span></h3>
-
-* 利用cookie二维性： {:&.moveIn} <span class="fadeIn"><span>domain / </span><span>path</span></span>
-* domain：<span class="fadeIn"><span>全站都用的模块版本号，zepto、reset等</span></span>
-* path：<span class="fadeIn"><span>频道级别通用+业务代码版本号，common样式和具体业务模块</span></span>
-
-
-[slide]
-## 升级版localstorage缓存
------
-
-key | domain | path | value
-:------|:---------:|:------:|----
-bdapp_lsv | x.baidu.com | / | jA-1_jZ-3_jB-2
-bdapp_ls {:.highlight} | x.baidu.com | /novel {:.highlight} | cN-1_jN-2
-bdapp_ls {:.highlight} | x.baidu.com | /discovery {:.highlight} | cD-1_tD-2_jT-2
-
-间隔采用**_**和**-**，urlencode不会转义~保证长度不变~
-
-
-[slide data-transition="cover-diamond"]
-## 静态资源的引入方式
-----
-从静态资源引入方式来区分，将html渲染模式分为：
-
-内嵌(inline) {:.yellow}
-
-```html
-<script>code</script>
-<style>xxx</style>
-```
-
-外链(tag) {:.yellow}
-
-```html
-<link href="//domain.com/css/path_0.css" rel="stylesheet"/>
-<link href="//domain.com/css/path_1.css" rel="stylesheet"/>
-<script src="//domain.com/code/path_0.js"></script>
-<script src="//domain.com/code/path_1.js"></script>
-```
-
-combo {:.yellow}
-
-```html
-<link href="//domain.com/??css/path_0.css,css/path_1.css" rel="stylesheet" />
-<script src="//domain.com/??code/path_0.js,code/path_1.js"></script>
-```
-
-[slide]
-## 优劣比较
--------
-* inline {:&.moveIn}
-    * http请求少，不存在并发下载问题，省电，但是每次代码都要下发
-    * 可以通过localstorage做缓存，不过有实现成本
-    * 单域名ls存储空间有限，命名冲突
-* tag
-    * 利用http协议实现cache
-    * 页面模块多，则外链多，请求也多，存在并发限制，费电
-* combo
-    * 将页面多个请求合并成一个
-    * 减少http请求，可结合CDN和http协议cache优势
-
-[slide data-transition="cover-diamond"]
-
-{:&.fadeIn}
-
-## 那么问题来了 {:.red}
-## 能不能在用户访问页面时，根据当时的网络环境自动在3种模式间切换？
-
-[slide]
-## 这是一个静态资源如何管理的问题
-<h3 class="bounceIn"><span class="red">利用FIS release后的`map.json`！</span></h3>
-
-[slide]
-## `map.json`
------
-
-```json
-{
-    "common:bdbox/io/xDomain": {
-        "uri": "/static/searchbox/bdbox/io/xDomain.js",
-        "type": "js",
-        "deps": [
-            "common:bdbox/event/xMessage",
-            "common:bdbox/utils/queryToJson"
-        ],
-        "content": "xDomain代码...."
-    }
-}
-```
-
-[slide]
-## inline模式
-### <span class="yellow">线上环境</span>，适合<span class="red">慢速</span>网络
-----
-{:&.fadeIn}
-
-```html
-{%html rendermode="inline"%}
-```
-![inline模式](/assets/box-fe-road/img/inline-mode.png)
-
-[slide]
-## tag模式
-### <span class="yellow">线下开发环境</span>，适合<span class="red">debug</span>
-----
-{:&.fadeIn}
-
-```html
-{%html rendermode="tag"%}
-```
-
-![tag模式](/assets/box-fe-road/img/tag-mode.png)
-
-[slide]
-## combo模式
-### <span class="yellow">线上环境</span>，适合<span class="red">3G及以上</span>网络
-----
-{:&.fadeIn}
-
-```html
-{%html rendermode="combo"%}
-```
-
-![combo模式](/assets/box-fe-road/img/combo-mode.png)
-
-
-`combo.php`是线下测试combo的文件，实际使用场景中文件url都带有hash值
-
-[slide data-transition="cover-diamond"]
-## 根据网速智能切换渲染模式
-----
-<p class="moveIn"><span class="yellow">客户端知道页面访问时，用户所处网络环境</span></p>
-<p class="fadeIn">
-    <span class="yellow">根据IP测速库可推算出网络延迟</span>
-</p>
-
-<pre class="fadeIn"><code class="smarty hljs mel">&lt;!DOCTYPE html&gt;
-<em>{%<span class="hljs-keyword">if</span> <span class="hljs-variable">$network</span> == <span class="hljs-string">'fast'</span> <span class="hljs-variable">%}</span>
-    {<span class="hljs-variable">%html</span> rendermode=<span class="hljs-string">"combo"</span><span class="hljs-variable">%}</span>
-{<span class="hljs-variable">%<span class="hljs-keyword">else</span></span><span class="hljs-variable">%}</span>
-    {<span class="hljs-variable">%html</span> rendermode=<span class="hljs-string">"inline"</span> localstorage=<span class="hljs-string">"true"</span> lscookiepath=<span class="hljs-string">"/xxx"</span> <span class="hljs-variable">%}</span>
-{<span class="hljs-variable">%/</span><span class="hljs-keyword">if</span><span class="hljs-variable">%}</span></em>
-{<span class="hljs-variable">%head</span><span class="hljs-variable">%}</span>
-.....
-{<span class="hljs-variable">%/</span>head<span class="hljs-variable">%}</span>
-....
-</code></pre>
-
-[note]
-## 按H键，有动效
-[/note]
+           |A：保留搜索框| B：去除搜索框
+-----------|-----------|-----------
+页面大小    |125K       | 104K
+首屏时间    | 296      | 294
+十条结果    |420       | 418
+用户可操作  | 970      | 917
+总下载时间  | 1331      | 1289
 
 
 
