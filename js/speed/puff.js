@@ -191,7 +191,7 @@ var ctx, width, height, timer;
 Slide.on('update', function(i, item,cls) {
 
     clearInterval(timer);
-    if (i === 4&& item===1) {
+    if (i === 9&& item===1) {
         var canvas = document.createElement('canvas');
         canvas.style.position = 'absolute';
         canvas.style.top = '0';
@@ -199,7 +199,7 @@ Slide.on('update', function(i, item,cls) {
         width = canvas.width = document.documentElement.offsetWidth;
         ctx = canvas.getContext('2d');
         document.body.appendChild(canvas);
-        Puff.add('#FFC524' /*colors[i % 6]*/ , ctx, 20, 700, width / 2, height / 2+100, width / 1.8, 400);
+        Puff.add('#FFC524' /*colors[i % 6]*/ , ctx, 20, 700, width / 2, height / 2, width / 1.8, 400);
         timer = setInterval(function() {
             Puff.draw(1, function(a){
                 if(a){

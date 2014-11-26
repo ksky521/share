@@ -1,11 +1,11 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: cover-diamond
+transition: stick
 files: /css/theme.moon.css,/js/speed/puff.js
 highlightStyle: monokai_sublime
 
-[slide]
+[slide class="title-slide"]
 # 手机百度速度优化
 <small><a href="//weibo.com/sanshuiqing">@三水清</a></small>
 
