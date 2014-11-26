@@ -77,9 +77,9 @@ highlightStyle: monokai_sublime
                 | 手机百度 | 竞品        | 数据测算方法  | 解决方法
 ----------------| --------| ------------| -----------  |----------
 点击搜索到首屏展示| 2497ms  | 1222ms      | 上下游统计    | --
-客户端耗时       | 882ms   | N/A         | 客户端RD测算  | <span>精简动画/框架</span> {:&.fadeIn}
-网络+服务器耗时  | 878ms+300ms|608+360ms  | 请求log日志  | <span>内核/链路等</span> {:&.fadeIn}
-首屏渲染         | 437ms    | 254ms      | js埋点       | <span>内核/差异化模板</span> {:&.fadeIn}
+客户端耗时       | 882ms   | N/A         | 客户端RD测算  | 精简动画/框架 {:&.fadeIn}
+网络+服务器耗时  | 878ms+300ms|608+360ms  | 请求log日志  | 内核/链路等 {:&.fadeIn}
+首屏渲染         | 437ms    | 254ms      | js埋点       | 内核/差异化模板 {:&.fadeIn}
 
 P.S：wifi环境，15日均值
 
@@ -127,9 +127,8 @@ P.S：wifi环境，15日均值
 ## 结论
 * js打点方式要早于UI展现 {:&.fadeIn}
 * 两者走势是match的
-* <span class="yellow">有内核反而更差，为什么？</span>
-* <span class="yellow">从“切片”到&lt;paint>标签</span>
-
+* 有内核反而更差，为什么？ {:.yellow}
+* 从“切片”到&lt;paint>标签 {:.yellow}
 
 [slide]
 ## 用户的使用习惯真的是我们想象的吗？
