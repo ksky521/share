@@ -1,7 +1,7 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: fade
+transition: cover-diamond
 files: /css/theme.moon.css,/js/speed/puff.js
 highlightStyle: monokai_sublime
 
@@ -21,10 +21,10 @@ highlightStyle: monokai_sublime
 [slide]
 ## 项目背景
 ------
-* 2013年7月：搜索速度需要与wise搜索速度持平，并超越wise
-    * KPI： 3G+wifi用户，80%可以在1s内看到首屏
+* 2013年7月：搜索速度需要与其他浏览器速度持平
+    * 目标： 3G+wifi用户，绝大多数可以在1s内看到首屏
 * 2013年11月：做搜索最快的客户端
-    * KPI： 搜索速度超越竞品
+    * 目标： 搜索速度超越竞品
 
 
 [slide]
@@ -34,7 +34,10 @@ highlightStyle: monokai_sublime
 ![搜索流程](../img/speed/framework.png)
 
 
-<h3 class="fadeIn"><span>流程决定了项目分工</span></h3>
+[slide]
+## 流程决定了项目分工
+----
+![搜索流程](../img/speed/team.png)
 
 
 [slide]
@@ -71,7 +74,7 @@ highlightStyle: monokai_sublime
 -----
 
 
-                | 手机百度 | UC          | 数据测算方法  | 解决方法
+                | 手机百度 | 竞品        | 数据测算方法  | 解决方法
 ----------------| --------| ------------| -----------  |----------
 点击搜索到首屏展示| 2497ms  | 1222ms      | 上下游统计    | --
 客户端耗时       | 882ms   | N/A         | 客户端RD测算  | <span>精简动画/框架</span> {:&.fadeIn}
@@ -104,7 +107,7 @@ P.S：wifi环境，15日均值
 ----------
 ![冷启动时间](../img/speed/lengqidong.png)
 
-手机百度5.0  >  UC 9.4  > UC 9.5 > QQ 5.0.1.660
+手机百度5.0  >  竞品1  > 竞品2 > 竞品3
 
 [slide]
 ## 高速摄像头测试数据
@@ -177,5 +180,30 @@ P.S：wifi环境，15日均值
 用户可操作  | 970      | 917
 总下载时间  | 1331      | 1289
 
+结论：因为代码在非首屏，并不会对首屏造成影响，但是因为代码量的减少，会缩短domready之后的时间
 
+[slide]
+## 准入：防止退化，保护成果
+--------
+利用<em class="yellow">Python+adb+monkey</em>脚本
 
+![6.pic.jpg](../img/speed/6.pic.jpg)
+
+[slide]
+## 准入：防止退化，保护成果
+--------
+
+![6.pic.jpg](../img/speed/client.png)
+
+[slide]
+## 速度项目怎么做？
+---------
+* 监控+分析：
+    * 从全局抓，从大头抓
+    * 数据支持理论，不要想当然
+* 优化开展：
+    * 多团队合作
+    * 做好效果评估和原因分析
+* 准入系统：
+    * 确立标准
+    * 防止退化
