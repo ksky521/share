@@ -1,7 +1,7 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: fade
+transition: cover-diamond
 files: /css/theme.moon.css,/js/speed/puff.js
 highlightStyle: monokai_sublime
 
