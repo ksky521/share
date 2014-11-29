@@ -1,7 +1,7 @@
 title: 手机百度速度优化
 speaker: 三水清
 url: https://js8.in
-transition: cover-diamond
+transition: fade
 files: /css/theme.moon.css,/js/speed/puff.js
 highlightStyle: monokai_sublime
 
@@ -39,13 +39,18 @@ highlightStyle: monokai_sublime
 
 [slide]
 ## 整个搜索流程
+-------
+![搜索流程](../img/speed/http.png)
+
+[slide]
+## 流程对应的架构
 ------
 
 ![搜索流程](../img/speed/framework.png)
 
 
 [slide]
-## 流程决定了项目分工
+## 流程决定分工
 ----
 ![搜索流程](../img/speed/team.png)
 
@@ -192,7 +197,9 @@ P.S：wifi环境，15日均值
 --------
 利用<em class="yellow">Python+adb+monkey</em>脚本
 
-![6.pic.jpg](../img/speed/6.pic.jpg)
+<div class="fade">
+    <img src="../img/speed/6.pic.jpg" alt="">
+</div>
 
 [slide]
 ## 准入：防止退化，保护成果

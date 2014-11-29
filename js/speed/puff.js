@@ -191,7 +191,7 @@ var ctx, width, height, timer;
 Slide.on('update', function(i, item,cls) {
 
     clearInterval(timer);
-    if (i === 9&& item===1) {
+    if ((i === 11 || i===20)&& item===1) {
         var canvas = document.createElement('canvas');
         canvas.style.position = 'absolute';
         canvas.style.top = '0';
