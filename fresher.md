@@ -1,4 +1,4 @@
-title: 前端新人分享
+title: 前端成长和瓶颈
 speaker: 三水清
 url: https://js8.in
 transition: fade
@@ -6,13 +6,12 @@ files: /css/theme.moon.css
 highlightStyle: monokai_sublime
 
 [slide class="title-slide"]
-# 前端新人分享
+# 前端成长和瓶颈
 <small><a href="//weibo.com/sanshuiqing">@三水清</a></small>
 
 [slide]
-## 面试问到的五个问题
---------
-
+## 目录
+----
 * 为什么选择从事前端工作？
 * 平时怎么学习前端知识？
 * 遇见不懂的问题怎么解决？
@@ -21,22 +20,14 @@ highlightStyle: monokai_sublime
 
 [slide]
 ## 为什么选择从事前端工作？
------
+------
+* 大学专业没有前端 {:&.fadeIn}
+* 纯粹是兴趣
 
-[slide]
-## 平时怎么学习前端知识？
------
+<h3 class="fadeIn"><span>故事分享</span></h3>
 
-[slide]
-## 遇见不懂的问题怎么解决？
------
-
-
-[slide]
-## 最近有什么关注的技术和作品？
------
-
-
-[slide]
-## 了解一门后端语言吗？
------
+* 盗取QQ号
+* 玩校内涂鸦板
+    * 挂广告
+    * xss蠕虫
+    * CSRF
