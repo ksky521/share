@@ -7,3 +7,7 @@ ol {
 ol  li{
     line-height: 1.5em;
 }
+
+.flyup article{
+    display: none;
+}

@@ -24,7 +24,7 @@ files: /css/theme.moon.css,/css/stalker/main.css
 -----
 ### 什么是后处理统计
 
-1. 使用Nginx等Server服务，打日志
+1. 使用Nginx等Server服务，打日志 {:&.rollIn}
 2. 按小时将日志拆分成小日志
 3. 通过定时执行分析脚本将日志进行分析
 
@@ -33,10 +33,16 @@ files: /css/theme.moon.css,/css/stalker/main.css
 * 日志分析浪费时间
 
 [slide]
-### 举个后处理统计例子：IP归属地分析
------
+<p class="fadeIn">
+    <span>举个[IP归属地分析]例子</span>
+</p>
+<p class="fadeIn">
+    <span>一次请求30~40ms</span>
+</p>
 
-# 36ms * 1000,000 = 36000s = 10h
+<h1 class="bounceIn">
+    <span>36ms * 1000,000</span> <span>= 36000s</span> <span>= <mark>10h</mark></span>
+</h1> 
     
 [note]
 * 依赖后端ip归属地接口
@@ -75,8 +81,8 @@ files: /css/theme.moon.css,/css/stalker/main.css
 * 现在支持[设备画像项目](http://mdp.baidu.com/)统计数据
 * 每天处理大概1.2亿+的请求数据
 * 服务部署在一台12核实体机
-* 实时统计数据类型：
-    - 注入型劫持
+* 实时统计数据类型： 
+    - 注入型劫持 {:&.fadeIn}
     - html5 css3新特性支持
     - 搜索结果页页面性能
     - js报错
