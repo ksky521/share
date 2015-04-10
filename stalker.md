@@ -20,17 +20,20 @@ files: /css/theme.moon.css,/css/stalker/main.css
 * 番外篇：Node分析日志
 
 [slide]
-## 后处理统计
------
-### 什么是后处理统计
+[subSlide]
 
+## 什么是后处理统计
+----
 1. 使用Nginx等Server服务，打日志 {:&.rollIn}
 2. 按小时将日志拆分成小日志
 3. 通过定时执行分析脚本将日志进行分析
 
-### 面临的问题
-* 日志存储占用空间
+===========
+## 后处理统计的问题
+-----
+* 日志存储占用空间 {:&.rollIn}
 * 日志分析浪费时间
+[/subSlide]
 
 [slide]
 <p class="fadeIn">
@@ -42,8 +45,8 @@ files: /css/theme.moon.css,/css/stalker/main.css
 
 <h1 class="bounceIn">
     <span>36ms * 1000,000</span> <span>= 36000s</span> <span>= <mark>10h</mark></span>
-</h1> 
-    
+</h1>
+
 [note]
 * 依赖后端ip归属地接口
 * 接口响应时间30~40ms，为了好计算按照36ms算
@@ -65,8 +68,8 @@ files: /css/theme.moon.css,/css/stalker/main.css
 
         类型|占用空间|时效性    |原始日志
 -----------|-------|----------|---------
- 后处理统计 | 较大   | 延时严重 | 原始日志完整 
- 实时统计   | 较小   | 实时    | 原始日志不完整 
+ 后处理统计 | 较大   | 延时严重 | 原始日志完整
+ 实时统计   | 较小   | 实时    | 原始日志不完整
 
 * 数据宝贵，具有长期分析价值（挖掘），机房多且服务复杂，适用于后处理统计
 * 时效性要求高，对原始数据要求不高，适用于实时统计
@@ -81,7 +84,7 @@ files: /css/theme.moon.css,/css/stalker/main.css
 * 现在支持[设备画像项目](http://mdp.baidu.com/)统计数据
 * 每天处理大概1.2亿+的请求数据
 * 服务部署在一台12核实体机
-* 实时统计数据类型： 
+* 实时统计数据类型：
     - 注入型劫持 {:&.fadeIn}
     - html5 css3新特性支持
     - 搜索结果页页面性能
@@ -141,7 +144,7 @@ Stalker的插件都是统一的node模块，统一的入口函数（task/init）
     - 将prestorer数据按照落地格式和类型完成存储
     - 例如csv，mysql等
 
-[slide]    
+[slide]
 ## Stalker插件规范
 ------
 * 数据由上一个流程插件，经过处理后传入下一个插件
