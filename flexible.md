@@ -16,6 +16,14 @@ theme: moon
 * 字体计算
 
 [slide]
+## 先看个页面问题
+----
+<div class="columns-2">
+    <div class="moveIn"><img src="/assets/flexible/5.png"></div>
+    <div class="moveIn"><img src="/assets/flexible/6plus.png"></div>
+</div>
+
+[slide]
 # 先说下设备像素比
 
 [slide]
@@ -134,7 +142,7 @@ $font-baseline: 12px;
     @include rem(padding, 20px 30px);
     @include rem(height, 200px);
     //文字需要提前除以dpr
-    @include fontsize(14px);
+    @include fontsize(24px);
 }
 ```
 
@@ -143,8 +151,50 @@ $font-baseline: 12px;
 
 [slide]
 <h1 class="red">$rem-baseline 怎么定？</h1>
-<h2 class="yellow"><span>根据视觉稿宽度/2</span></h2>
+<h2 class="yellow"><span>根据视觉稿宽度/10</span></h2>
 
 [slide]
 <h1 class="red">$font-baseline 怎么定？</h1>
 <h2 class="yellow"><span>统一设置为12px！？</span></h2>
+<h2 class="yellow3 bounceIn"><span class="">一定注意百分比会叠加的！</span></h2>
+[note]
+视觉稿一般页面字体都是12px，如果设置为10px，虽然比例很好算，单默认字体都要写font-size: 12px;
+[/note]
+
+[slide]
+## 720的视觉稿怎么切？
+---------
+* 宽高是多少就写多少，等比例切图
+* 字体是多少就写多少，等比例切图
+
+[slide]
+## 举个例子
+### 720视觉稿中360x360的div
+-----
+<h2 class="moveIn yellow">360px/2.25 = <span class="red">160px</span></h2> 
+
+<pre class="fadeIn"><code class="css hljs "><span class="hljs-class">.demo</span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">160</span>px</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">160</span>px</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+
+[slide]
+## 举个例子
+### 720视觉稿中360x360的div
+-----
+```sass
+@import 'bsass/base';
+$rem-baseline: 72px;
+.demo{
+    @include rem(width, 360px);
+    @include rem(height, 360px);
+}
+```
+
+<h2 class="fadeIn"><span>算一算</span></h2>
+
+* html字体：1rem=640px/10=64px {:&.rollIn}
+* viewport：scale = 1/dpr = 0.5
+* css的宽：360px/72px = 5rem
+* 5rem\*64px\*0.5 = 160px
