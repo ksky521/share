@@ -4,6 +4,7 @@ url: https://js8.in
 transition: move
 files: http://apps.bdimg.com/libs/fontawesome/4.0.3/css/font-awesome.min.css,/assets/box-fe-road/css/main.css
 highlightStyle: monokai_sublime
+date: 2014年08月29日
 
 [slide]
 # 手机百度前端工程化之路

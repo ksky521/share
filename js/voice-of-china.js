@@ -4,7 +4,7 @@ function loadDelayImages() {
     var imgs = ['loading0@2x.png', 'loading1@2x.png', 'loading2@2x.png', 'loading3@2x.png'];
     for (var i = 0; i < imgs.length; i++) {
         var img = new Image();
-        img.src = '/img/voice-of-china/' + imgs[i];
+        img.src = 'img/voice-of-china/' + imgs[i];
         delayImages.push(img);
     }
 }
@@ -16,7 +16,7 @@ function delay0() {
     var index = 0;
 
     function start() {
-        console.log(1);
+        // console.log(1);
         delay0Timer = requestAnimationFrame(start);
         if (index === delayImages.length) {
             index = 0;

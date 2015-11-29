@@ -1,5 +1,5 @@
 title: 前端&amp;运营组技术和平台
-speaker: 王永青
+speaker: 三水清
 url: //cms.m.baidu.com/fe
 transition: move
 theme: moon
