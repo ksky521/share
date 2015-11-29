@@ -1,5 +1,5 @@
 title: 好声音项目分享（游戏部分）
-speaker: wangyongqing01
+speaker: 三水清
 url: https://github.com/ksky521/nodePPT
 transition: move
 files: /js/requestAnimationFrame.js,/js/voice-of-china.js,/js/voice-of-china/game.js,/js/voice-of-china/init.js
