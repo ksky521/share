@@ -1,0 +1,113 @@
+.J-timeline {
+  background-color: #6ab0de;
+  margin-top: -150px;
+  height: 10px;
+  width: 100%;
+  position: relative;
+}
+.J-timeline::before,
+.J-timeline::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 10px;
+  border: 10px solid #6ab0de;
+}
+.J-timeline::before {
+  left: -5px;
+  z-index: 9;
+}
+.J-timeline::after {
+  right: -12px;
+  border: 10px solid transparent;
+  border-right: 0;
+  border-left: 20px solid #6ab0de;
+  border-radius: 3px;
+}
+.J-timeline .J-tl-inside {
+  position: absolute;
+  height: 4px;
+  background-color: #fff;
+  width: 0%;
+  top: 3px;
+  left: 0;
+  -moz-transition:width 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition:width 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -webkit-transition:width 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition:width 0.5s cubic-bezier(0.26, 0.86, 0.44, 0.985)
+}
+.J-timeline .J-tl-dot {
+  z-index: 99;
+  -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.J-timeline .J-tl-dot:hover {
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.J-timeline .J-tl-dot date {
+  font-size: 1.1rem;
+  display: block;
+  position: relative;
+  top: -60px;
+  text-align: center;
+}
+.J-timeline .J-tl-dot span {
+  display: inline-block;
+  margin-top: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.J-tl-content{
+  position: relative;
+  top: 30px;
+  margin: auto;
+  padding: 20px;
+  /*background-color: #fff;*/
+  max-width: 960px;
+}
+
+.J-tl-modal {
+  display: black;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+
+  opacity: 0;
+  -moz-transition:opacity 0.5s ease-in;
+  -o-transition:opacity 0.5s ease-in;
+  -webkit-transition:opacity 0.5s ease-in;
+  transition:opacity 0.5s ease-in;
+}
+.J-tl-fadeIn{
+  opacity: 1;
+}
+
+.J-tl-modal date {
+  display: block;
+  text-align: right;
+}
+.J-tl-modal h2 {
+  font-size: 2em;
+  padding: 10px 0;
+}
+.J-tl-modal p {
+  line-height: 130%;
+}
