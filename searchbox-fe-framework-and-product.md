@@ -2,7 +2,7 @@ title: 手机百度前端产品和产品介绍
 speaker: 三水清
 url: https://js8.in
 transition: move
-files: /assets/main/css/timeline.css,/assets/main/js/timeline.js,/assets/main/js/puff.js,/assets/searchbox-fe-framework-and_product/main.js
+files: /assets/main/css/timeline.css,/assets/main/js/timeline.js,/assets/main/js/puff.js,/assets/searchbox-fe-framework-and-product/main.js
 date: 2015年12月20日
 
 [slide]
