@@ -1,8 +1,9 @@
 title: 好声音项目分享（游戏部分）
-speaker: wangyongqing01
+speaker: 三水清
 url: https://github.com/ksky521/nodePPT
-transition: cards
+transition: move
 files: /js/requestAnimationFrame.js,/js/voice-of-china.js,/js/voice-of-china/game.js,/js/voice-of-china/init.js
+date: 2013年10月29日
 
 [slide style="background-image:url('/img/bg1.png')"]
 
@@ -13,10 +14,8 @@ files: /js/requestAnimationFrame.js,/js/voice-of-china.js,/js/voice-of-china/gam
 
 {:.flexbox.vcenter}
 
-[code]
 <canvas id="canvas" width="320" height="400" style="border:1px solid #ccc;background:#222222"></canvas>
 <center><button id="start">开始</button></center>
-[/code]
 
 [slide]
 ## 动画基础
@@ -35,7 +34,6 @@ files: /js/requestAnimationFrame.js,/js/voice-of-china.js,/js/voice-of-china/gam
 [/note]
 ## 延时：保帧数的策略
 ---
-[code]
 <div class="columns-2">
     <div style="width:45%"><button id="delay0btn">开始0</button></div>
     <div style="width:45%">
@@ -46,7 +44,6 @@ files: /js/requestAnimationFrame.js,/js/voice-of-china.js,/js/voice-of-china/gam
     <canvas id="delay0" width="320" height="150" style="border:1px solid skyblue;"></canvas>
     <canvas id="delay1" width="320" height="150" style="border:1px solid skyblue;"></canvas>
 </div>
-[/code]
 
 
 [slide]
@@ -87,17 +84,13 @@ start();
 ## 一些约定
 -----
 
-[code]
-<ul>
-    <li class="build">每个类都有destroy方法<span class="blue2"> → 内存管理</span></li>
-    <li class="build">每个精灵都有update方法<span class="blue2"> → 每帧管理</span></li>
-    <li class="build">每个精灵都有evtClick方法<span class="blue2"> → 点击管理</span></li>
-    <li class="build">唯一计时器<span class="blue2"> → 游戏控制stop/pause。。</span></li>
-    <li>Stage是”唯一接口人“</li>
-    <li class="build">链式<span class="blue2"> → return this 成习惯</span></li>
-    <li class="build">游戏效果可配置<span class="blue2"> → 应对需求变更</span></li>
-</ul>
-[/code]
+* 每个类都有destroy方法<span class="blue2"> → 内存管理</span> {:&.moveIn}
+* 每个精灵都有update方法<span class="blue2"> → 每帧管理</span>
+* 每个精灵都有evtClick方法<span class="blue2"> → 点击管理</span>
+* 唯一计时器<span class="blue2"> → 游戏控制stop/pause。。</span>
+* Stage是”唯一接口人“
+* 链式<span class="blue2"> → return this 成习惯</span>
+* 游戏效果可配置<span class="blue2"> → 应对需求变更</span>
 
 [slide]
 ## Stage：中央处理器
@@ -310,16 +303,17 @@ circlePool.freeOne(circle);
 ----
 ## audio局限性
 
-* 音频编码 {:&.build}
+* 音频编码 {:&.rollIn}
 * 音量
 * 跨域
 * 预加载：需要主动触发规定事件
 * 单一性
 
-## 解决方案
-* 声音sprite {:&.build}
-    * GoldWave处理成一条声音
-    * 输出不同编码格式
+<h2 class="moveIn"><span>解决方案</span></h2>
+
+* 声音sprite {:&.moveIn}
+* GoldWave处理成一条声音
+* 输出不同编码格式
 
 [slide]
 ## howler

@@ -40,19 +40,19 @@ highlightStyle: monokai_sublime
 [slide]
 ## 整个搜索流程
 -------
-![搜索流程](../img/speed/http.png)
+![搜索流程](/img/speed/http.png)
 
 [slide]
 ## 流程对应的架构
 ------
 
-![搜索流程](../img/speed/framework.png)
+![搜索流程](/img/speed/framework.png)
 
 
 [slide]
 ## 流程决定分工
 ----
-![搜索流程](../img/speed/team.png)
+![搜索流程](/img/speed/team.png)
 
 
 [slide]
@@ -78,7 +78,7 @@ highlightStyle: monokai_sublime
 [slide]
 ## 收集完整搜索体验时间
 ---------
-![搜索流程](../img/speed/http.png)
+![搜索流程](/img/speed/http.png)
 
 * 客户端时间 = 客户端打点 {:&.fadeIn}
 * 服务器处理 = log id 标注
@@ -114,7 +114,7 @@ P.S：wifi环境，15日均值
 ----------
 
 <div class="fade">
-    <img src="../img/speed/camera.jpg" alt="">
+    <img src="/img/speed/camera.jpg" alt="">
 </div>
 
 
@@ -123,7 +123,7 @@ P.S：wifi环境，15日均值
 ## js打点能体现用户真实的体验？
 ----------
 
-![](../img/speed/js.png)
+![](/img/speed/js.png)
 
 [slide]
 ## 结论
@@ -152,7 +152,7 @@ P.S：wifi环境，15日均值
 ## 用户很关注进度条：强迫症吗？
 -----
 
-![进度条](../img/speed/8.pic.jpg)
+![进度条](/img/speed/8.pic.jpg)
 
 
 
@@ -176,7 +176,7 @@ P.S：wifi环境，15日均值
 ## 底部框sug去除实验
 -----
 
-![7.pic.jpg](../img/speed/7.pic.jpg)
+![7.pic.jpg](/img/speed/7.pic.jpg)
 
 [slide]
 ## 底部框去除后数据
@@ -198,21 +198,21 @@ P.S：wifi环境，15日均值
 利用<em class="yellow">Python+adb+monkey</em>脚本
 
 <div class="fade">
-    <img src="../img/speed/6.pic.jpg" alt="">
+    <img src="/img/speed/6.pic.jpg" alt="">
 </div>
 
 [slide]
 ## 准入：防止退化，保护成果
 --------
 
-![6.pic.jpg](../img/speed/client.png)
+![6.pic.jpg](/img/speed/client.png)
 
 
 [slide]
 ## 结果：高速摄像头测试数据
 ### 冷启动时间（优化后）
 ----------
-![冷启动时间](../img/speed/lengqidong.png)
+![冷启动时间](/img/speed/lengqidong.png)
 
 手机百度5.0  >  竞品1  > 竞品2 > 竞品3
 
@@ -220,7 +220,7 @@ P.S：wifi环境，15日均值
 ## 结果：高速摄像头测试数据
 ### 搜索结果（优化后）
 ----------
-![搜索结果](../img/speed/result1.png)
+![搜索结果](/img/speed/result1.png)
 
 手机百度在稳定性和速度上都超过竞品
 

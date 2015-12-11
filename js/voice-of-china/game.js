@@ -1378,7 +1378,7 @@ Pool.prototype = {
     }
     Sprite.prototype = {
         constructor: Sprite,
-        imgURL: '/img/voice-of-china/sprite.png',
+        imgURL: 'img/voice-of-china/sprite.png',
         canDestroy: function() {
             return !this.isLive;
         },
@@ -1944,7 +1944,7 @@ var Stage = function(canvas, width, height, isSound) {
     this.isSound = typeof isSound === 'boolean' ? isSound : true;
     if (this.isSound) {
         this.sound = new Howl({
-            urls: ['/assets/voice-of-china/game.mp3', '/assets/voice-of-china/game.ogg'],
+            urls: ['./assets/voice-of-china/game.mp3', './assets/voice-of-china/game.ogg'],
             sprite: {
                 gembreak: [0, 500],
                 click: [700, 100],
