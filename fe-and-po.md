@@ -27,14 +27,14 @@ files: /assets/box-fe-road/css/main.css
 
 ![手机百度前端工程化体系](/assets/box-fe-road/img/box-fe.png)
 
-
+[前端知识体系脑图](http://naotu.baidu.com/viewshare.html?shareId=auoa568nruw4)
 
 [slide]
 ## 前端知识体系
 ----
 * 构建工具 {:&.moveIn}
 * 类库
-* php和smarty扩展
+* php和[smarty扩展](http://cms.m.baidu.com/fe/template/smarty.html)
 * 解决方案
 * 数据和性能
 * 调试和框环境模拟
@@ -44,7 +44,7 @@ files: /assets/box-fe-road/css/main.css
 [slide]
 ## 构建工具
 -----
-* smarty/前端模版编译 {:.fadeIn}
+* smarty/前端模版编译 {:&.rollIn}
 * 类库和解决方案封装
 * 规范检查
 * 代码打包部署
@@ -55,6 +55,7 @@ files: /assets/box-fe-road/css/main.css
 
 ![构建工具](/assets/fe-and-po/build.png)
 
+[http://cms.m.baidu.com/fe/framework/package.html](http://cms.m.baidu.com/fe/framework/package.html)
 [slide]
 ## 类库：Bdbox
 ---------
@@ -76,7 +77,7 @@ files: /assets/box-fe-road/css/main.css
 交互     | 页面交互相关，zepto扩展 | Dialog，mask，swipe，fastclick
 运营     | 抽奖游戏，pv和行为统计，跨域通信，游戏类 | 刮刮乐，摇一摇，跑马灯，游戏舞台/精灵/对象池/easing
 
-18个大类，50+个模块，覆盖手机百度所有应用场景
+18个大类，50+个模块，覆盖框所有应用场景，[codepicker](http://cms.m.baidu.com/fe/static/codepicker.html)
 
 [slide]
 
@@ -84,60 +85,23 @@ files: /assets/box-fe-road/css/main.css
 ## Bdbox文档平台
 ------
 ![](/assets/fe-and-po/bdbox-doc.png)
+
+[http://cms.m.baidu.com/fe/bdbox/](http://cms.m.baidu.com/fe/bdbox/)
 =============
 ## Bdbox文档平台
 ------
 ![](/assets/fe-and-po/bdbox-doc1.png)
 [/subslide]
 
-[slide]
-## 模块编写：像写node模块
-----
-```javascript
-/**
- * 简单模板
- * @memberOf Bdbox.utils
- * @name template
- * @param  {String} html 模板String内容
- * @param  {Object} data 模板data对象
- * @return {String}      返回处理后的模板
- * @author wangyongqing01
- * @version $Id: template.js 175996 2014-05-16 00:48:03Z wangyongqing01 $
- * @example
- * var t = Bdbox.utils.template('I am <%=name%>', {name:'Theo Wang'});
- * // I am Theo Wang
- * console.log(t);
- */
-module.exports = function(html, data) {
-    for (var i in data) {
-        html = html.replace(new RegExp('<%=\\s*' + i + '\\s*%>', 'g'), data[i]);
-    }
-    return html;
-};
-```
-
-[slide]
-## 编译后：AMD模块
-----
-```javascript
-define('common:bdbox/utils/template', function(require, exports, module, $){
-    module.exports = function(html, data) {
-        for (var i in data) {
-            html = html.replace(new RegExp('<%=\\s*' + i + '\\s*%>', 'g'), data[i]);
-        }
-        return html;
-    };
-});
-```
 
 [slide]
 ## 其他类库
 -----
-* openjs：公司内部开发库 {:.fadeIn}
-* Muse：jssdk
-* Fenix：开放平台jssdk
-* game：运营游戏和canvas
-* bsass：sass 库
+* [openjs](http://cms.m.baidu.com/wiki/fe/)：公司内部开发库 {:&.rollIn}
+* [Muse](http://cms.m.baidu.com/fe/jssdk.html)：jssdk
+* [Fenix](http://cms.m.baidu.com/wiki/sdk/js_sdk.html)：开放平台jssdk
+* game：[运营游戏](http://cms.m.baidu.com/wiki/game.html)和canvas
+* [bsass](http://cms.m.baidu.com/fe/framework/bsass.html)：sass 库
     - reset
     - css3
     - ui
@@ -145,11 +109,11 @@ define('common:bdbox/utils/template', function(require, exports, module, $){
 [slide]
 ## 解决方案
 -----
-* 细粒度缓存 {:.fadeIn}
-* 渲染模式：inline/tag/combo
+* [细粒度缓存](http://cms.m.baidu.com/fe/framework/solution.localstorage.html) {:&.rollIn}
+* [渲染模式](http://cms.m.baidu.com/fe/framework/solutionauto-render.html)：inline/tag/combo
 * 智能适配
-* component：js模板+css+js
-* SPA：`Bdbox.app.*`
+* [component](http://cms.m.baidu.com/fe/framework/component.html)：前端组件模板
+* [SPA](http://cms.m.baidu.com/fe/framework/webapp.html)：`Bdbox.app.*`
 
 [slide]
 ## inline模式
@@ -174,7 +138,7 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 [slide]
 ## 数据和性能
 -----
-* stalker系统 {:.fadeIn}
+* stalker系统 {:&.fadeIn}
 * js报错
 * 劫持
 * 速度性能
@@ -217,6 +181,8 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 ---
 [subslide]
 ![chrome扩展](/assets/box-fe-road/img/chrome.png)
+
+[框chrome扩展帮助文档](http://cms.m.baidu.com/fe/environment/chrome.html)
 ============
 * 支持FIS调试，ORP预览机调试
 * 客户端接口模拟
@@ -231,8 +197,10 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 ## 文档规范
 --------
 * [前端&运营文档平台](//cms.m.baidu.com/fe)
+    - 目录/html/js/css/sass/组件/图片/js编码性能
 * [运营组件化文档](//cms.m.baidu.com/wiki)
 * [Bdbox文档](http://cms.m.baidu.com/fe/bdbox/)
+* [框端能力备案平台Invoker](//invoker.baidu.com)
 
 [slide]
 # 运营组件化平台 {:&.flexbox.vleft}
@@ -248,13 +216,13 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 [slide]
 ## 七个API接口
 -----
-* 投票
-* 抽奖
-* 评论
-* 用户
-* 问答
-* ip归属地
-* 图片
+* [投票](http://cms.m.baidu.com/wiki/vote.html)
+* [抽奖](http://cms.m.baidu.com/wiki/lottery.html)
+* [评论](http://cms.m.baidu.com/wiki/comment.html)
+* [用户](http://cms.m.baidu.com/wiki/user.html)
+* [问答](http://cms.m.baidu.com/wiki/quiz.html)
+* [ip归属地](http://cms.m.baidu.com/wiki/ip.html)
+* [图片](http://cms.m.baidu.com/wiki/image.html)
 
 
 [slide]
@@ -277,13 +245,15 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 [slide]
 * 框运营位管理平台
 * 框运营活动cms化
-* 数据中心
-* 抽样和配置下发
+* 数据中心：计划
+* 抽样平台：计划
 
 [slide]
 ## 框运营位管理平台
 -----
-* 框运营位申请
+完成框运营位申请、审批、物料提交和上线全流程，增加多种维度控制
+
+* 框运营位申请 {:&.rollIn}
 * 审批
 * 提交物料
 * 测试
@@ -293,7 +263,10 @@ nginx combo服务：[box.bdimg.com](http://box.bdimg.com/??bdbox/bdbox.js,bdbox/
 [slide]
 ## 框运营活动cms化
 ------
-* 话题卡片和落地页
+运营活动UI组件化，时效性活动和卡片落地页cms化
+
+* 卡片及其落地页 {:&.fadeIn}
+* 时效性和突发类运营活动模板
 * 笑报+今日资讯（等待迁移）
 * 官网更新
 * 灰度升级
