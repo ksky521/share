@@ -1,4 +1,4 @@
-title: 手机百度前端产品和产品介绍
+title: 手机百度前端架构和产品介绍
 speaker: 三水清
 url: https://js8.in
 transition: move
@@ -6,7 +6,7 @@ files: /assets/main/css/timeline.css,/assets/main/js/timeline.js,/assets/main/js
 date: 2015年12月20日
 
 [slide]
-# 手机百度前端产品和产品介绍
+# 手百前端架构和产品介绍
 
 [slide]
 
@@ -130,6 +130,19 @@ $font-baseline: 12px; //设置字体初始值
 * js/tmpl/css三者相互依赖
 
 [slide]
+## <span class="text-warning">widget</span> VS <span class="text-warning">components</span>
+------
+
+ |widget| components
+:-------|:------:|--------
+实现 | smarty模板的组件 | js模板的组件
+组成 | tpl、js、css | tmpl、js、css<br>artTemplate模板
+路径 | widget/* | components/*
+规范 | module/module.* | module/module.*
+使用 | `ns:widget/module/module.tpl`<br/>{%widget name=""%} | `namespace:c_xxx/xxx`<br/>{%require name=""%}<br/>require('')
+
+
+[slide]
 ## 单页APP：基于事件总线设计
 ----
 
@@ -187,28 +200,173 @@ var detail = Bdbox.app.controller({
 ## 静态资源管理
 ### 基于fis的map.json做了扩展
 ----
-* content：文件内容，inline模式使用
-* hash：文件md5版本号，ls版本号
-* rUri：文件release路径，inline模式使用
-* uri：带domain的地址，combo/tag模式使用
+* content：文件内容 {:&.rollIn}
+* hash：文件md5版本号
+* rUri：文件release路径
+* uri：带domain的地址
+* uUri：没有压缩的代码地址
+* Smarty扩展`FISResource`
+* Smarty扩展`FISLocalstorage`
+
+[slide]
+## 渲染模式
+----
+
+<div class="columns5 rollIn">
+    <div class="label-primary"><del>inline</del></div>
+    <div class="label-info">tag</div>
+    <div class="label-success">combo</div>
+    <div class="label-danger">seed</div>
+    <div class="label-warning">unpack</div>
+</div>
+
+
+[slide]
+[magic data-transition="move"]
 
 ## 渲染模式
-## build工具
-开发，联调，部署，上线
+---
+<pre><code class="smarty">{%html framework=&quot;common:bdbox&quot; rendermode=&quot;<b>inline|tag|combo</b>&quot;%}
+</code></pre>
+
+====
+
+## tag模式
+### 线下开发调试环境，适合debug
+----
+![tag模式](/assets/box-fe-road/img/tag-mode.png)
+
+=====
+
+## combo模式
+### 线上环境，适合3G+网络
+----
+![combo模式](/assets/searchbox-fe-framework-and-product/combo.png)
+[/magic]
 
 [slide]
-## 文档积累和沉淀
+# build工具
+### 打通开发、联调、部署、上线全部流程
 
 [slide]
-## chrome手百webview调试插件
+[magic]
+# <b class="red">make</b> [command] [args]
+====
+## make [<b class="red">command</b>] [args]
+----
+* dev
+* local
+* prod
+* remote
+
+=====
+## make [command] [<b class="red">args</b>]
+----
+* --debug
+* --lint
+* --optimize
+* --domain
+* --md5
+
+[/magic]
+
+[slide]
+## Debug
+
+[slide]
+[magic data-transition="cover-circle"]
+## 手百chrome扩展：popup页面
 ----
 ![](/assets/searchbox-fe-framework-and-product/Snip20151209_24.png)
 
+====
+## 手百chrome扩展：webview调试
+----
+![](/assets/searchbox-fe-framework-and-product/chrome-2.png)
+
+====
+## 手百chrome扩展：本地调试
+----
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_3.png)
+
+[/magic]
+
+[slide]
+
+[magic data-transition="zoomin"]
+## js debug注释
+--------
+```js
+var a = 1;
+/*<debug>
+alert(a);
+</debug>*/
+var b = a + 2;
+```
+==========
+## js debug 编译后
+--------
+```js
+var a = 1;
+alert(a);
+var b = a + 2;
+```
+==========
+## 页面 debug 注释
+--------
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>debug</title>
+</head>
+<body>
+    <!--<debug> <h1>这里debug内容</h1> </debug>-->
+</body>
+</html>
+```
+========
+## 页面 debug 编译后
+--------
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>debug</title>
+</head>
+<body>
+    <h1>这里debug内容</h1>
+</body>
+</html>
+```
+[/magic]
+
+[slide]
+# 文档积累和沉淀
+
+[slide]
+[magic data-transition="vertical3d"]
+## Bdbox文档
+----
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_6.png)
+
+
+====
+## 文档平台
+----
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_5.png)
+
+
+[/magic]
+
 [slide]
 # 平台建设
-组件API
-Tiny平台
-Stalker监控
+<div class="columns3">
+    <div class="label-danger">组件API</div>
+    <div class="label-danger">Tiny平台</div>
+    <div class="label-danger">Stalker监控</div>
+</div>
+
 
 [slide]
 # 运营开放组件平台：运营接口API化
@@ -220,6 +378,24 @@ Stalker监控
 ![](/assets/searchbox-fe-framework-and-product/Snip20151211_35.png)
 
 [河图平台连接](http://hetu.baidu.com/api/platform/index?platformId=978)
+
+[slide]
+[magic data-transition="vertical3d"]
+## CMS
+----
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_4.png)
+
+====
+## API测试平台
+---
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_7.png)
+
+====
+## 文档平台
+----
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_8.png)
+
+[/magic]
 
 [slide]
 # Tiny平台：运营活动快速搭建UI平台
@@ -242,11 +418,24 @@ Stalker监控
 [/magic]
 
 [slide]
-其他有特点的小东西：
-* debug
-* 抽奖游戏
-* po jssdk+测试平台
-* lint
+# Stalker监控
+
+[slide]
+[magic]
+## 首页
+----
+![](/assets/searchbox-fe-framework-and-product/Snip20151212_9.png)
+
+====
+## PM2监控
+----
+![pm2 list](/img/stalker/2015-03-13_100320.png)
+====
+## PM2监控
+----
+<iframe data-src="/assets/searchbox-fe-framework-and-product/stalker.pdf" src="about:blank;"></iframe>
+[/magic]
+
 
 [slide]
 # 2016规划

@@ -27,7 +27,7 @@ theme: moon
 
 ```bash
 # 设置文件的机器
-dev="work@cq01-wangyongqing01.epc"
+dev="work@cq01-wyq.epc"
 # 设置接受template的路径
 devTplPath="/home/work/odp"
 # 设置静态资源的路径
@@ -41,7 +41,7 @@ devStaticPath="/home/work/sitedata"
 ------
 ```json
 {
-    "receiverUrl":"http://cq01-wangyongqing01.epc.baidu.com:8300/fis-receiver.php",
+    "receiverUrl":"http://cq01-wyq.epc.baidu.com:8300/fis-receiver.php",
     "staticPath": "/home/work/sitedata/",
     "tplPath": "/home/work/orp001/template/pocms/",
     "domain": {
@@ -161,7 +161,7 @@ rewrite ^\/json\/(.+) /a.php
 [slide]
 ## 技巧：debug
 --------
-[subslide]
+[magic]
 ```js
 var a = 1;
 /*<debug>
@@ -201,7 +201,7 @@ var b = a + 2;
 ```
 
 
-[/subslide]
+[/magic]
 
 
 [slide]
