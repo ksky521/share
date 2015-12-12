@@ -2,7 +2,7 @@ title: Stalker——基于Node的实时统计服务
 speaker: 三水清
 url: https://github.com/ksky521/nodePPT
 transition: fadein
-files: /css/theme.moon.css,/css/stalker/main.css
+theme: moon
 
 [slide]
 
