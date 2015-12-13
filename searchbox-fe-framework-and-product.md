@@ -1,7 +1,7 @@
 title: 手机百度前端架构和产品介绍
 speaker: 三水清
 url: https://js8.in
-transition: move
+transition: slide
 files: /assets/main/css/timeline.css,/assets/main/js/timeline.js,/assets/main/js/puff.js,/assets/searchbox-fe-framework-and-product/main.js
 date: 2015年12月20日
 
@@ -84,7 +84,7 @@ date: 2015年12月20日
 18个大类，60+个模块，覆盖手机百度所有应用场景，灵活的core设计，方便切换
 
 [slide]
-## Rem切图方案
+## 移动适配切图方案
 ---
 * 页面head引入`flexible.js` ，计算rem初始值
 * 布局使用bsass提供的<span class="red">rem</span>
@@ -421,7 +421,7 @@ var b = a + 2;
 # Stalker监控
 
 [slide]
-[magic]
+[magic data-transition="cover-circle"]
 ## 首页
 ----
 ![](/assets/searchbox-fe-framework-and-product/Snip20151212_9.png)
@@ -429,9 +429,20 @@ var b = a + 2;
 ====
 ## PM2监控
 ----
-![pm2 list](/img/stalker/2015-03-13_100320.png)
+![PM2监控](/img/stalker/2015-03-13_100320.png)
+
 ====
-## PM2监控
+## 设备数据监控
+----
+![设备数据监控](/assets/searchbox-fe-framework-and-product/stalker-1.png)
+
+====
+## 劫持数据监控
+----
+![劫持数据监控](/assets/searchbox-fe-framework-and-product/stalker-2.png)
+
+====
+## 架构流程
 ----
 <iframe data-src="/assets/searchbox-fe-framework-and-product/stalker.pdf" src="about:blank;"></iframe>
 [/magic]
